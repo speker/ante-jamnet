@@ -5,12 +5,18 @@ import time
 
 
 class GetTemp(Resource):
-    base_dir = '/sys/bus/w1/devices/'
-    device_folder = glob.glob(base_dir + '28*')[0]
-    device_file = device_folder + '/w1_slave'
+    try:
+        base_dir = '/sys/bus/w1/devices/'
+        device_folder = glob.glob(base_dir + '28*')[0]
+        device_file = device_folder + '/w1_slave'
+    except Exception as e:
+        print(e)
+        base_dir = '/sys/bus/w1/devices/'
+        device_folder = ""
+        device_file = device_folder + '/w1_slave'
 
     def get(self):
-        return {'data': {'success': 'true'},'payload':{'temp':self.read_temp}}
+        return {'data': {'success': 'true'}, 'payload': {'temp': str(self.read_temp)}}
 
     def read_temp_raw(self):
         f = open(self.device_file, 'r')
