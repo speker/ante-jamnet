@@ -102,4 +102,4 @@ def add_header(response):
 
 
 if __name__ == '__main__':
-    app.run(host=host, port=port, debug=False, threaded=False, use_reloader=True)
+    app.run(host=host, port=port, debug=False, threaded=True, use_reloader=True)
