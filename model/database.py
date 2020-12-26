@@ -21,11 +21,13 @@ class Database:
         states = query.fetchone()
         return states
 
-    def get_register(self, port):
-        query = self.db.cursor().execute("SELECT * FROM registers where port=" + str(port))
+    def get_register(self, port, address):
+        query = self.db.cursor().execute(
+            "SELECT * FROM registers where port=" + str(port) + "and address=" + str(address))
         register = query.fetchone()
         return register[1]
 
-    def set_register(self, port, value):
-        self.db.cursor().execute("UPDATE registers SET value=" + str(value) + " where port=" + str(port))
+    def set_register(self, port, address, value):
+        self.db.cursor().execute(
+            "UPDATE registers SET value=" + str(value) + " where port=" + str(port) + "and address=" + str(address))
         self.db.commit()
