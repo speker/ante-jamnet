@@ -6,7 +6,10 @@ class Gpio:
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
 
-    def set_digital(self, port, output):
+    @staticmethod
+    def set_digital(port, output):
         GPIO.setup(port, GPIO.OUT)
-        GPIO.output(12, output)
-
+        if output == 1:
+            GPIO.output(12, GPIO.HIGH)
+        elif output == 0:
+            GPIO.output(12, GPIO.LOW)
