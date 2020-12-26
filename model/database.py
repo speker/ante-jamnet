@@ -27,5 +27,5 @@ class Database:
         return register[1]
 
     def set_register(self, port, value):
-        self.db.cursor().execute("UPDATE registers SET value=" + value + " where port=" + port)
+        self.db.cursor().execute("UPDATE registers SET value=" + value + " where port=" + str(port))
         self.db.commit()
