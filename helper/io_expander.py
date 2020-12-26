@@ -47,8 +47,8 @@ class IoExpander:
     def __init__(self, address):
         self.bus = smbus.SMBus(1)
         self.address = address
-        self.output_0 = Database().get_register('output_0')
-        self.output_1 = Database().get_register('output_1')
+        self.output_0 = Database().get_register(0)
+        self.output_1 = Database().get_register(1)
         print(self.output_0)
         print(self.output_1)
         self.configuration()
