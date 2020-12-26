@@ -11,7 +11,7 @@ class Modules:
             'p1': {'bridge': None, 'io': None},
             'p2': {'bridge': None, 'io': None}
         },
-        "0": {
+        0: {
             'power': {'bridge': 'io_0', 'io': 16},
             'p1': {'bridge': None, 'io': None},
             'p2': {'bridge': None, 'io': None}
