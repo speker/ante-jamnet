@@ -50,33 +50,33 @@ class Modules:
         },
         7: {
             'power': {'bridge': 'gpio', 'io': 21},
-            'p1': {'bridge': 'io_0', 'io': 14},
-            'p2': {'bridge': 'io_0', 'io': 13}
+            'p1': {'bridge': 'io_1', 'io': 14},
+            'p2': {'bridge': 'io_1', 'io': 13}
         },
         8: {
             'power': {'bridge': 'gpio', 'io': 16},
-            'p1': {'bridge': 'io_0', 'io': 12},
-            'p2': {'bridge': 'io_0', 'io': 11}
+            'p1': {'bridge': 'io_1', 'io': 12},
+            'p2': {'bridge': 'io_1', 'io': 11}
         },
         9: {
             'power': {'bridge': 'gpio', 'io': 20},
-            'p1': {'bridge': 'io_0', 'io': 10},
-            'p2': {'bridge': 'io_0', 'io': 9}
+            'p1': {'bridge': 'io_1', 'io': 10},
+            'p2': {'bridge': 'io_1', 'io': 9}
         },
         10: {
             'power': {'bridge': 'gpio', 'io': 16},
-            'p1': {'bridge': 'io_0', 'io': 8},
-            'p2': {'bridge': 'io_0', 'io': 7}
+            'p1': {'bridge': 'io_1', 'io': 8},
+            'p2': {'bridge': 'io_1', 'io': 7}
         },
         11: {
             'power': {'bridge': 'gpio', 'io': 13},
-            'p1': {'bridge': 'io_0', 'io': 6},
-            'p2': {'bridge': 'io_0', 'io': 5}
+            'p1': {'bridge': 'io_1', 'io': 6},
+            'p2': {'bridge': 'io_1', 'io': 5}
         },
         12: {
             'power': {'bridge': 'gpio', 'io': 19},
-            'p1': {'bridge': 'io_0', 'io': 3},
-            'p2': {'bridge': 'io_0', 'io': 4}
+            'p1': {'bridge': 'io_1', 'io': 3},
+            'p2': {'bridge': 'io_1', 'io': 4}
         }
     }
 
