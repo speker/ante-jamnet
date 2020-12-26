@@ -49,8 +49,6 @@ class IoExpander:
         self.address = address
         self.output_0 = Database().get_register(0, self.address)
         self.output_1 = Database().get_register(1, self.address)
-        print(self.output_0)
-        print(self.output_1)
         self.configuration()
 
     def configuration(self):
