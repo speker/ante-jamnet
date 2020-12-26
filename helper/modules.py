@@ -1,9 +1,11 @@
 from helper.io_expander import IoExpander
+from helper.gpio import Gpio
 
 
 class Modules:
     io_0 = None
     io_1 = None
+    gpio = None
 
     module_addr = {
         'alarm': {
@@ -15,6 +17,11 @@ class Modules:
             'power': {'bridge': 'io_0', 'io': 16},
             'p1': {'bridge': None, 'io': None},
             'p2': {'bridge': None, 'io': None}
+        },
+        1: {
+            'power': {'bridge': 'gpio', 'io': 6},
+            'p1': {'bridge': 'io_0', 'io': 1},
+            'p2': {'bridge': 'io_0', 'io': 2}
         }
     }
 
@@ -22,6 +29,7 @@ class Modules:
         try:
             self.io_0 = IoExpander(0X20)
             self.io_1 = IoExpander(0X21)
+            self.gpio = Gpio
         except Exception as e:
             print(e)
 
