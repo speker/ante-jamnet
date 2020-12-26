@@ -5,10 +5,9 @@ from helper.modules import Modules
 
 
 class SetModule(rest.Resource):
-    io_0 = None
-    io_1 = None
 
-    def post(self):
+    @staticmethod
+    def post():
         data = rest.request.get_json(silent=True)
         if data is None or data['module'] is None:
             response = jsonify({'data': {'success': False, 'code': 403, 'message': 'bad module name'}})
@@ -18,5 +17,10 @@ class SetModule(rest.Resource):
         p1 = data['p1']
         p2 = data['p2']
         power = data['power']
-        Modules().write_module(module_addr, p1, p2, power)
-        return {'data': {'success': 'true'}, 'payload': {'temp': 's'}}
+        try:
+            Modules().write_module(module_addr, p1, p2, power)
+            return {'data': {'success': 'true'}}
+        except Exception as e:
+            response = jsonify({'data': {'success': False, 'code': 500, 'message': e}})
+            response.status_code = 500
+            return response
