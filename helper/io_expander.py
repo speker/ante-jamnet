@@ -46,7 +46,8 @@ class IoExpander:
     def __init__(self, address):
         self.bus = smbus.SMBus(1)
         self.address = address
-        self.output = 0x00
+        self.output_0 = 0x00
+        self.output_1 = 0x00
         self.configuration()
 
     def configuration(self):
@@ -58,12 +59,18 @@ class IoExpander:
         pin = output_registers[port]['port']
         reg = output_registers[port]['conf']
         print('port : ' + str(port))
-        if output == 1:
-            self.output |= pin
-        elif output == 0:
-            self.output &= ~pin
-        print('output : ' + str(self.output))
-
+        if port >= 1 or port <= 8:
+            if output == 1:
+                self.output_0 |= pin
+            elif output == 0:
+                self.output_0 &= ~pin
+            print('output : ' + str(self.output_0))
+        elif port >= 9 or port <= 16:
+            if output == 1:
+                self.output_1 |= pin
+            elif output == 0:
+                self.output_1 &= ~pin
+            print('output : ' + str(self.output_1))
         self.bus.write_byte_data(self.address, reg, self.output)
 
     def set_all_clear(self):
