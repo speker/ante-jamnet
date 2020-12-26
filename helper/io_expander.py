@@ -36,11 +36,13 @@ class IoExpander:
         self.bus.write_byte_data(self.address, CONFIGURATION_REG_1, conf)
 
     def set_digital(self, port, output):
+        print('port : ' + port)
         if output == 1:
             self.output |= port
         elif output == 0:
             self.output &= ~port
-        print(self.output)
+        print('output : ' + self.output)
+
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, self.output)
         self.bus.write_byte_data(self.address, OUTPUT_REG_1, self.output)
 
