@@ -1,5 +1,24 @@
 import smbus
 
+output_registers = {
+    1: {'port': 1, 'conf': 0x02},
+    2: {'port': 2, 'conf': 0x02},
+    3: {'port': 4, 'conf': 0x02},
+    4: {'port': 8, 'conf': 0x02},
+    5: {'port': 16, 'conf': 0x02},
+    6: {'port': 32, 'conf': 0x02},
+    7: {'port': 64, 'conf': 0x02},
+    8: {'port': 128, 'conf': 0x02},
+    9: {'port': 128, 'conf': 0x03},
+    10: {'port': 128, 'conf': 0x03},
+    11: {'port': 128, 'conf': 0x03},
+    12: {'port': 128, 'conf': 0x03},
+    13: {'port': 128, 'conf': 0x03},
+    14: {'port': 128, 'conf': 0x03},
+    15: {'port': 128, 'conf': 0x03},
+    16: {'port': 128, 'conf': 0x03},
+}
+
 IO0_OUTPUT = 0x00
 IO0_INPUT = 0x01
 IO1_OUTPUT = 0x00
@@ -36,15 +55,16 @@ class IoExpander:
         self.bus.write_byte_data(self.address, CONFIGURATION_REG_1, conf)
 
     def set_digital(self, port, output):
+        pin = output_registers[port]['port']
+        reg = output_registers[port]['conf']
         print('port : ' + str(port))
         if output == 1:
-            self.output |= port
+            self.output |= pin
         elif output == 0:
-            self.output &= ~port
+            self.output &= ~pin
         print('output : ' + str(self.output))
 
-        self.bus.write_byte_data(self.address, OUTPUT_REG_0, self.output)
-        self.bus.write_byte_data(self.address, OUTPUT_REG_1, self.output)
+        self.bus.write_byte_data(self.address, reg, self.output)
 
     def set_all_clear(self):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, 0x00)
@@ -54,3 +74,6 @@ class IoExpander:
     def set_gpio(self, output):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, output)
         self.bus.write_byte_data(self.address, OUTPUT_REG_1, output)
+
+    def get_register(self, port):
+        return port
