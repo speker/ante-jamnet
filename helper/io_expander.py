@@ -69,7 +69,7 @@ class IoExpander:
                 self.output_0 &= ~pin
             print('output : ' + str(self.output_0))
             self.bus.write_byte_data(self.address, reg, self.output_0)
-            Database().set_register('output_0', self.output_0)
+            Database().set_register(0, self.output_0)
         elif port >= 9:
             if output == 1:
                 self.output_1 |= pin
@@ -77,7 +77,7 @@ class IoExpander:
                 self.output_1 &= ~pin
             print('output : ' + str(self.output_1))
             self.bus.write_byte_data(self.address, reg, self.output_1)
-            Database().set_register('output_1', self.output_1)
+            Database().set_register(1, self.output_1)
 
 
 
@@ -87,12 +87,11 @@ class IoExpander:
         self.bus.write_byte_data(self.address, OUTPUT_REG_1, 0x00)
         self.output_0 = 0x00
         self.output_1 = 0x00
-        Database().set_register('output_0', self.output_0)
-        Database().set_register('output_1', self.output_1)
+        Database().set_register(0, self.output_0)
+        Database().set_register(1, self.output_1)
 
     def set_gpio(self, output):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, output)
         self.bus.write_byte_data(self.address, OUTPUT_REG_1, output)
 
-    def get_register(self, port):
-        return port
+
