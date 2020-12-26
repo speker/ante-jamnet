@@ -31,3 +31,9 @@ class Database:
         self.db.cursor().execute(
             "UPDATE registers SET value=" + str(value) + " where port=" + str(port) + " and address=" + str(address))
         self.db.commit()
+
+    def set_state(self, module, p1, p2, power):
+        self.db.cursor().execute(
+            "UPDATE registers SET p1=" + str(p1) + ", p2=" + str(p2) + ", power=" + str(
+                power) + " where module_addr=" + str(module))
+        self.db.commit()
