@@ -31,4 +31,9 @@ class Modules:
         if power_bridge is not None:
             bridge = getattr(self, power_bridge)
             bridge.set_digital(power_io, power)
-
+        if p1_bridge is not None:
+            bridge = getattr(self, p1_bridge)
+            bridge.set_digital(p1_io, p1)
+        if p2_bridge is not None:
+            bridge = getattr(self, p2_bridge)
+            bridge.set_digital(p2_io, p2)
