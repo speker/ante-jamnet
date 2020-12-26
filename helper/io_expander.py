@@ -49,6 +49,8 @@ class IoExpander:
         self.address = address
         self.output_0 = Database().get_register('output_0')
         self.output_1 = Database().get_register('output_1')
+        print(self.output_0)
+        print(self.output_1)
         self.configuration()
 
     def configuration(self):
@@ -67,6 +69,7 @@ class IoExpander:
                 self.output_0 &= ~pin
             print('output : ' + str(self.output_0))
             self.bus.write_byte_data(self.address, reg, self.output_0)
+            Database().set_register('output_0', self.output_0)
         elif port >= 9:
             if output == 1:
                 self.output_1 |= pin
@@ -74,9 +77,10 @@ class IoExpander:
                 self.output_1 &= ~pin
             print('output : ' + str(self.output_1))
             self.bus.write_byte_data(self.address, reg, self.output_1)
+            Database().set_register('output_1', self.output_1)
 
-        Database().set_register('output_0', self.output_0)
-        Database().set_register('output_1', self.output_1)
+
+
 
     def set_all_clear(self):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, 0x00)
