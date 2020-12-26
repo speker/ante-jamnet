@@ -16,7 +16,7 @@ class GetTemp(Resource):
         device_file = device_folder + '/w1_slave'
 
     def get(self):
-        return {'data': {'success': 'true'}, 'payload': {'temp': str(self.read_temp())}}
+        return {'data': {'success': 'true', 'payload': {'temp': str(self.read_temp())}}}
 
     def read_temp_raw(self):
         f = open(self.device_file, 'r')
