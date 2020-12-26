@@ -10,5 +10,5 @@ for i in range(8):
     i += 1
     time.sleep(1)
 
-io_0.set_all_clear()
-io_1.set_all_clear()
+# io_0.set_all_clear()
+# io_1.set_all_clear()
