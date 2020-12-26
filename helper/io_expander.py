@@ -1,4 +1,5 @@
 import smbus
+from model.database import Database
 
 output_registers = {
     1: {'port': 1, 'conf': 0x02},
@@ -46,8 +47,8 @@ class IoExpander:
     def __init__(self, address):
         self.bus = smbus.SMBus(1)
         self.address = address
-        self.output_0 = 0x00
-        self.output_1 = 0x00
+        self.output_0 = Database().get_register('output_0')
+        self.output_1 = Database().get_register('output_1')
         self.configuration()
 
     def configuration(self):
@@ -74,11 +75,16 @@ class IoExpander:
             print('output : ' + str(self.output_1))
             self.bus.write_byte_data(self.address, reg, self.output_1)
 
+        Database().set_register('output_0', self.output_0)
+        Database().set_register('output_1', self.output_1)
+
     def set_all_clear(self):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, 0x00)
         self.bus.write_byte_data(self.address, OUTPUT_REG_1, 0x00)
         self.output_0 = 0x00
         self.output_1 = 0x00
+        Database().set_register('output_0', self.output_0)
+        Database().set_register('output_1', self.output_1)
 
     def set_gpio(self, output):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, output)
