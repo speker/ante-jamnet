@@ -22,6 +22,61 @@ class Modules:
             'power': {'bridge': 'gpio', 'io': 6},
             'p1': {'bridge': 'io_0', 'io': 1},
             'p2': {'bridge': 'io_0', 'io': 2}
+        },
+        2: {
+            'power': {'bridge': 'gpio', 'io': 12},
+            'p1': {'bridge': 'io_0', 'io': 3},
+            'p2': {'bridge': 'io_0', 'io': 4}
+        },
+        3: {
+            'power': {'bridge': 'gpio', 'io': 5},
+            'p1': {'bridge': 'io_0', 'io': 5},
+            'p2': {'bridge': 'io_0', 'io': 6}
+        },
+        4: {
+            'power': {'bridge': 'gpio', 'io': 7},
+            'p1': {'bridge': 'io_0', 'io': 7},
+            'p2': {'bridge': 'io_0', 'io': 8}
+        },
+        5: {
+            'power': {'bridge': 'gpio', 'io': 8},
+            'p1': {'bridge': 'io_0', 'io': 9},
+            'p2': {'bridge': 'io_0', 'io': 10}
+        },
+        6: {
+            'power': {'bridge': 'gpio', 'io': 11},
+            'p1': {'bridge': 'io_0', 'io': 11},
+            'p2': {'bridge': 'io_0', 'io': 12}
+        },
+        7: {
+            'power': {'bridge': 'gpio', 'io': 21},
+            'p1': {'bridge': 'io_0', 'io': 14},
+            'p2': {'bridge': 'io_0', 'io': 13}
+        },
+        8: {
+            'power': {'bridge': 'gpio', 'io': 16},
+            'p1': {'bridge': 'io_0', 'io': 12},
+            'p2': {'bridge': 'io_0', 'io': 11}
+        },
+        9: {
+            'power': {'bridge': 'gpio', 'io': 20},
+            'p1': {'bridge': 'io_0', 'io': 10},
+            'p2': {'bridge': 'io_0', 'io': 9}
+        },
+        10: {
+            'power': {'bridge': 'gpio', 'io': 16},
+            'p1': {'bridge': 'io_0', 'io': 8},
+            'p2': {'bridge': 'io_0', 'io': 7}
+        },
+        11: {
+            'power': {'bridge': 'gpio', 'io': 13},
+            'p1': {'bridge': 'io_0', 'io': 6},
+            'p2': {'bridge': 'io_0', 'io': 5}
+        },
+        12: {
+            'power': {'bridge': 'gpio', 'io': 19},
+            'p1': {'bridge': 'io_0', 'io': 3},
+            'p2': {'bridge': 'io_0', 'io': 4}
         }
     }
 
