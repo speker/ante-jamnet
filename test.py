@@ -1,4 +1,4 @@
-from model.sqlite import Database
+from model.sqlite import SqLite
 
-print(Database().get_register(0, 0X21))
+print(SqLite().get_register(0, 0X21))
 # print(Database().set_register(0,10))

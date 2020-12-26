@@ -76,8 +76,8 @@ class Modules:
         },
         12: {
             'power': {'bridge': 'gpio', 'io': 19},
-            'p1': {'bridge': 'io_1', 'io': 3},
-            'p2': {'bridge': 'io_1', 'io': 4}
+            'p1': {'bridge': 'io_1', 'io': 4},
+            'p2': {'bridge': 'io_1', 'io': 3}
         }
     }
 
