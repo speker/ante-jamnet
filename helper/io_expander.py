@@ -59,15 +59,14 @@ class IoExpander:
         pin = output_registers[port]['port']
         reg = output_registers[port]['conf']
         print('port : ' + str(port))
-        if port >= 1 or port <= 8:
+        if port <= 8:
             if output == 1:
                 self.output_0 |= pin
             elif output == 0:
                 self.output_0 &= ~pin
             print('output : ' + str(self.output_0))
             self.bus.write_byte_data(self.address, reg, self.output_0)
-
-        elif port >= 9 or port <= 16:
+        elif port >= 9:
             if output == 1:
                 self.output_1 |= pin
             elif output == 0:
