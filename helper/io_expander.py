@@ -47,8 +47,8 @@ class IoExpander:
     def __init__(self, address):
         self.bus = smbus.SMBus(1)
         self.address = address
-        self.output_0 = Database().get_register(0)
-        self.output_1 = Database().get_register(1)
+        self.output_0 = Database().get_register(0, self.address)
+        self.output_1 = Database().get_register(1, self.address)
         print(self.output_0)
         print(self.output_1)
         self.configuration()
@@ -61,13 +61,11 @@ class IoExpander:
     def set_digital(self, port, output):
         pin = output_registers[port]['port']
         reg = output_registers[port]['conf']
-        print('port : ' + str(port))
         if port <= 8:
             if output == 1:
                 self.output_0 |= pin
             elif output == 0:
                 self.output_0 &= ~pin
-            print('output : ' + str(self.output_0))
             self.bus.write_byte_data(self.address, reg, self.output_0)
             Database().set_register(0, self.address, self.output_0)
         elif port >= 9:
@@ -75,7 +73,6 @@ class IoExpander:
                 self.output_1 |= pin
             elif output == 0:
                 self.output_1 &= ~pin
-            print('output : ' + str(self.output_1))
             self.bus.write_byte_data(self.address, reg, self.output_1)
             Database().set_register(1, self.address, self.output_1)
 
