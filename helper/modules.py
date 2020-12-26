@@ -90,24 +90,32 @@ class Modules:
             print(e)
 
     def write_module(self, module_addr, p1, p2, power):
+        modules = []
         if module_addr == 'clear_all':
             self.io_0.set_all_clear()
             self.io_1.set_all_clear()
             return None
-        power_bridge = self.module_addr[module_addr]['power']['bridge']
-        power_io = self.module_addr[module_addr]['power']['io']
-        p1_bridge = self.module_addr[module_addr]['p1']['bridge']
-        p1_io = self.module_addr[module_addr]['p1']['io']
-        p2_bridge = self.module_addr[module_addr]['p2']['bridge']
-        p2_io = self.module_addr[module_addr]['p2']['io']
+        elif module_addr == "all":
+            for i in range(13):
+                modules.append(i),
+        else:
+            modules.append(module_addr)
 
-        if power_bridge is not None:
-            bridge = getattr(self, power_bridge)
-            bridge.set_digital(power_io, power)
-        if p1_bridge is not None:
-            bridge = getattr(self, p1_bridge)
-            bridge.set_digital(p1_io, p1)
-        if p2_bridge is not None:
-            bridge = getattr(self, p2_bridge)
-            bridge.set_digital(p2_io, p2)
-        SqLite().set_state(module_addr, p1, p2, power)
+        for modules in modules:
+            power_bridge = self.module_addr[modules]['power']['bridge']
+            power_io = self.module_addr[modules]['power']['io']
+            p1_bridge = self.module_addr[modules]['p1']['bridge']
+            p1_io = self.module_addr[modules]['p1']['io']
+            p2_bridge = self.module_addr[modules]['p2']['bridge']
+            p2_io = self.module_addr[modules]['p2']['io']
+
+            if power_bridge is not None:
+                bridge = getattr(self, power_bridge)
+                bridge.set_digital(power_io, power)
+            if p1_bridge is not None:
+                bridge = getattr(self, p1_bridge)
+                bridge.set_digital(p1_io, p1)
+            if p2_bridge is not None:
+                bridge = getattr(self, p2_bridge)
+                bridge.set_digital(p2_io, p2)
+            SqLite().set_state(modules, p1, p2, power)
