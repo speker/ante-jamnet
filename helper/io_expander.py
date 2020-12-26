@@ -34,6 +34,7 @@ class IoExpander:
     def configuration(self):
         conf = IO0_OUTPUT | IO1_OUTPUT | IO2_OUTPUT | IO3_OUTPUT | IO4_OUTPUT | IO5_OUTPUT | IO6_OUTPUT | IO7_OUTPUT
         self.bus.write_byte_data(self.address, CONFIGURATION_REG_0, conf)
+        self.bus.write_byte_data(self.address, CONFIGURATION_REG_1, conf)
 
     def set_digital(self, port, output):
         if output == 1:
@@ -41,10 +42,13 @@ class IoExpander:
         elif output == 0:
             self.output &= ~port
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, self.output)
+        self.bus.write_byte_data(self.address, OUTPUT_REG_1, self.output)
 
     def set_all_clear(self):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, 0x00)
+        self.bus.write_byte_data(self.address, OUTPUT_REG_1, 0x00)
         self.output = 0x00
 
     def set_gpio(self, output):
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, output)
+        self.bus.write_byte_data(self.address, OUTPUT_REG_1, output)
