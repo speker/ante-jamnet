@@ -5,6 +5,7 @@ class Gpio:
 
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
 
     @staticmethod
     def set_digital(port, output):
