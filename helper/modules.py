@@ -29,7 +29,7 @@ class Modules:
         try:
             self.io_0 = IoExpander(0X20)
             self.io_1 = IoExpander(0X21)
-            self.gpio = Gpio
+            self.gpio = Gpio()
         except Exception as e:
             print(e)
 
