@@ -11,7 +11,7 @@ class Modules:
             'p1': {'bridge': None, 'io': None},
             'p2': {'bridge': None, 'io': None}
         },
-        0: {
+        "0": {
             'power': {'bridge': 'io_0', 'io': 16},
             'p1': {'bridge': None, 'io': None},
             'p2': {'bridge': None, 'io': None}
@@ -26,6 +26,10 @@ class Modules:
             print(e)
 
     def write_module(self, module_addr, p1, p2, power):
+        if module_addr == 'clear_all':
+            self.io_0.set_all_clear()
+            self.io_1.set_all_clear()
+            return None
         power_bridge = self.module_addr[module_addr]['power']['bridge']
         power_io = self.module_addr[module_addr]['power']['io']
         p1_bridge = self.module_addr[module_addr]['p1']['bridge']
