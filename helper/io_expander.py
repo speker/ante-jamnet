@@ -17,7 +17,6 @@ IO6_INPUT = 0x40
 IO7_OUTPUT = 0x00
 IO7_INPUT = 0x80
 
-SLAVE_ADDRESS = 0x20
 CONFIGURATION_REG_0 = 0x06
 CONFIGURATION_REG_1 = 0x07
 OUTPUT_REG_0 = 0x02
@@ -25,7 +24,7 @@ OUTPUT_REG_1 = 0x03
 
 
 class IoExpander:
-    def __init__(self, address=SLAVE_ADDRESS):
+    def __init__(self, address):
         self.bus = smbus.SMBus(1)
         self.address = address
         self.output = 0x00
@@ -41,6 +40,7 @@ class IoExpander:
             self.output |= port
         elif output == 0:
             self.output &= ~port
+        print(self.output)
         self.bus.write_byte_data(self.address, OUTPUT_REG_0, self.output)
         self.bus.write_byte_data(self.address, OUTPUT_REG_1, self.output)
 
