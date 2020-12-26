@@ -1,6 +1,6 @@
-from model.database import Database
+from model.sqlite import SqLite
 from helper.modules import Modules
-last_states = Database().get_states()
+last_states = SqLite().get_states()
 for key in last_states:
     module_addr = key[0]
     p1 = key[1]

@@ -1,6 +1,6 @@
 from helper.io_expander import IoExpander
 from helper.gpio import Gpio
-from model.database import Database
+from model.sqlite import SqLite
 
 
 class Modules:
@@ -110,4 +110,4 @@ class Modules:
         if p2_bridge is not None:
             bridge = getattr(self, p2_bridge)
             bridge.set_digital(p2_io, p2)
-        Database().set_state(module_addr, p1, p2, power)
+        SqLite().set_state(module_addr, p1, p2, power)

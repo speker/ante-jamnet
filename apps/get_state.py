@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import jsonify
 import flask_restful as rest
-from model.database import Database
+from model.sqlite import Database
 
 
 class GetState(rest.Resource):

@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 
-class Database:
+class SqLite:
     db = None
 
     def __init__(self):
