@@ -34,6 +34,6 @@ class Database:
 
     def set_state(self, module, p1, p2, power):
         self.db.cursor().execute(
-            "UPDATE registers SET p1=" + str(p1) + ", p2=" + str(p2) + ", power=" + str(
+            "UPDATE module_states SET p1=" + str(p1) + ", p2=" + str(p2) + ", power=" + str(
                 power) + " where module_addr=" + str(module))
         self.db.commit()
