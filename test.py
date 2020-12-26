@@ -1,2 +1,4 @@
-output_0 = 0x01
-output_1 = 0x00
+from model.database import Database
+
+# print(Database().get_register("output_0"))
+print(Database().get_register(0))

@@ -22,9 +22,9 @@ class Database:
         return states
 
     def get_register(self, port):
-        query = self.db.cursor().execute("SELECT * FROM registers where port=" + port)
+        query = self.db.cursor().execute("SELECT * FROM registers where port=" + str(port))
         register = query.fetchone()
-        return register
+        return register[1]
 
     def set_register(self, port, value):
         self.db.cursor().execute("UPDATE registers SET value=" + value + " where port=" + port)
