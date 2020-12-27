@@ -99,7 +99,7 @@ def add_header(response):
     if 'Cache-Control' not in response.headers:
         response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate'
 
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    # response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Origin', 'Content-Type')
     response.headers.add('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE,HEAD,PATCH')
 

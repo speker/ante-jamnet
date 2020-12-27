@@ -56,8 +56,9 @@
                 type: "POST",
                 url: "http://192.168.88.240:8000/api/clearerror",
                 contentType: "application/json; charset=utf-8",
+
                 dataType: 'json',
-                data: JSON.stringify({module:2,password:''}),
+                data: '{"module":2,"password":""}',
                 success: function(data) {
             }
             });
