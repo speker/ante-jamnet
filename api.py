@@ -4,7 +4,6 @@ import _ast
 import inspect
 from flask import Flask, jsonify
 from flask_restful import Api
-from flask_cors import CORS
 
 host = '0.0.0.0'
 port = 8000
@@ -26,8 +25,6 @@ modules = [f for f in os.listdir(os.path.dirname(os.path.abspath(__file__)) + '/
            f.endswith('.py') and not f.startswith('__')]
 
 app = Flask(__name__)
-CORS(app)
-
 app.secret_key = 'ReActor2019!1..'
 handle_exceptions = app.handle_exception
 handle_user_exception = app.handle_user_exception
@@ -98,10 +95,9 @@ def add_header(response):
     response.headers['X-Server'] = 'JamNet/1.1.0'
     if 'Cache-Control' not in response.headers:
         response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate'
-
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE,HEAD,PATCH')
-
+    response.header['Access-Control-Allow-Origin'] = '*'
+    response.header['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    response.header['Access-Control-Allow-Methods'] = 'OPTIONS, HEAD, GET, POST, DELETE, PUT'
     return response
 
 
