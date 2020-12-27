@@ -22,10 +22,10 @@ class Power(rest.Resource):
         try:
             if power == 1:
                 for key in module_state:
-                    Modules().write_module(key[0], key[1], key[2], 1)
+                    Modules().write_module(key[0], key[1], key[2], key[3]-1)
             elif power == 0:
                 for key in module_state:
-                    Modules().write_module(key[0], key[1], key[2], 0)
+                    Modules().write_module(key[0], key[1], key[2], key[3]-1)
             return {'data': {'success': 'true'}}
         except Exception as e:
             response = jsonify({'data': {'success': False, 'code': 500, 'message': e}})
