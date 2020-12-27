@@ -1,5 +1,6 @@
 from model.sqlite import SqLite
 from helper.gpio import Gpio
+from helper.io_expander import IoExpander
 
 module_addr = {
     1: {'bridge': 'gpio', 'io': 9, 'state': 0},
@@ -23,6 +24,7 @@ for key in module_addr:
         if bridge == 'gpio':
             module_addr[key]['state'] = 1 - Gpio().get_digital(io)
         elif bridge == 'io_0':
-            module_addr[key]['state'] = 0
+            state = IoExpander(0X21).get_digital(1)
+        module_addr[key]['state'] = 0
         SqLite().set_error(key, module_addr[key]['state'])
         print(str(key) + ' : ' + str(module_addr[key]['state']))

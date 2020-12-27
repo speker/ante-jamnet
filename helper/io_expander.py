@@ -41,7 +41,8 @@ CONFIGURATION_REG_0 = 0x06
 CONFIGURATION_REG_1 = 0x07
 OUTPUT_REG_0 = 0x02
 OUTPUT_REG_1 = 0x03
-
+INPUT_REG_0 = 0x00
+INPUT_REG_1 = 0x01
 
 class IoExpander:
     def __init__(self, address):
@@ -52,9 +53,10 @@ class IoExpander:
         self.configuration()
 
     def configuration(self):
-        conf = IO0_OUTPUT | IO1_OUTPUT | IO2_OUTPUT | IO3_OUTPUT | IO4_OUTPUT | IO5_OUTPUT | IO6_OUTPUT | IO7_OUTPUT
-        self.bus.write_byte_data(self.address, CONFIGURATION_REG_0, conf)
-        self.bus.write_byte_data(self.address, CONFIGURATION_REG_1, conf)
+        bank_0 = IO0_OUTPUT | IO1_OUTPUT | IO2_OUTPUT | IO3_OUTPUT | IO4_OUTPUT | IO5_OUTPUT | IO6_OUTPUT | IO7_OUTPUT
+        bank_1 = IO0_INPUT | IO1_OUTPUT | IO2_OUTPUT | IO3_OUTPUT | IO4_OUTPUT | IO5_OUTPUT | IO6_OUTPUT | IO7_OUTPUT
+        self.bus.write_byte_data(self.address, CONFIGURATION_REG_0, bank_0)
+        self.bus.write_byte_data(self.address, CONFIGURATION_REG_1, bank_1)
 
     def set_digital(self, port, output):
         pin = output_registers[port]['port']
@@ -82,6 +84,5 @@ class IoExpander:
         SqLite().set_register(0, self.address, self.output_0)
         SqLite().set_register(1, self.address, self.output_1)
 
-    def set_gpio(self, output):
-        self.bus.write_byte_data(self.address, OUTPUT_REG_0, output)
-        self.bus.write_byte_data(self.address, OUTPUT_REG_1, output)
+    def get_digital(self, output):
+        print(self.bus.read_byte_data(self.address, OUTPUT_REG_1, output))
