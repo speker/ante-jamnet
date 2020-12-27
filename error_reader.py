@@ -1,6 +1,7 @@
 from model.sqlite import SqLite
 from helper.gpio import Gpio
 import time
+
 module_addr = {
     1: {'bridge': 'gpio', 'io': 9, 'state': 0},
     2: {'bridge': 'gpio', 'io': 25, 'state': 0},
@@ -16,7 +17,9 @@ module_addr = {
     12: {'bridge': 'gpio', 'io': 14, 'state': 0},
 
 }
-while True:
+
+
+def check_error():
     for key in module_addr:
         bridge = module_addr[key]['bridge']
         io = module_addr[key]['io']
@@ -25,4 +28,9 @@ while True:
                 module_addr[key]['state'] = 1 - Gpio().get_digital(io)
             SqLite().set_error(key, module_addr[key]['state'])
             print(str(key) + ' : ' + str(module_addr[key]['state']))
-    time.sleep(2)
+
+
+if __name__ == "__main__":
+    while True:
+        check_error()
+        time.sleep(1)
