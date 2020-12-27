@@ -18,7 +18,7 @@ module_addr = {
 
 }
 for key in module_addr:
-    bridge = key['bridge']
-    io = key['bridge']
+    bridge = module_addr[key]['bridge']
+    io = module_addr[key]['bridge']
     if bridge == 'gpio':
         print(str(io)+' : '+str(Gpio.get_digital(io)))
