@@ -98,7 +98,7 @@ class Modules:
         elif module_addr == "all":
             for i in range(13):
                 if i != 7 or i != 11:
-                    modules.append(i),
+                    modules.append(i)
         else:
             modules.append(module_addr)
 
