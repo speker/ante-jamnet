@@ -95,9 +95,9 @@ def add_header(response):
     response.headers['X-Server'] = 'JamNet/1.1.0'
     if 'Cache-Control' not in response.headers:
         response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate'
-    response.header['Access-Control-Allow-Origin'] = '*'
-    response.header['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-    response.header['Access-Control-Allow-Methods'] = 'OPTIONS, HEAD, GET, POST, DELETE, PUT'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    response.headers['Access-Control-Allow-Methods'] = 'OPTIONS, HEAD, GET, POST, DELETE, PUT'
     return response
 
 
