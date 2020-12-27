@@ -38,6 +38,10 @@ class SqLite:
                 power) + " where module_addr=" + str(module))
         self.db.commit()
 
+    def set_error_clear(self, module):
+        self.db.cursor().execute("UPDATE module_states SET clear_error=1 where module_addr=" + str(module))
+        self.db.commit()
+
     def set_error(self, module, value):
         if value == 0:
             self.db.cursor().execute(
