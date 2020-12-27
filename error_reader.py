@@ -31,7 +31,7 @@ def get_error():
 
 
 def set_alarm(state):
-    Gpio.set_digital(13, state)
+    Gpio().set_digital(13, state)
 
 
 def check_error():
