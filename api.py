@@ -7,7 +7,7 @@ from flask_restful import Api
 from flask_cors import CORS
 
 host = '0.0.0.0'
-port = 5000
+port = 8000
 
 
 def inspect_module(module_path):
