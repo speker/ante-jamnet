@@ -22,10 +22,10 @@ class Power(rest.Resource):
             if power == 1:
                 Modules().write_module(0, 0, 0, 1)
                 for key in module_state:
-                    Modules().write_module(key[0], key[1], key[2], 1)
+                    Modules().write_module(key['module'], key['p1'], key['p2'], 1)
             elif power == 0:
                 for key in module_state:
-                    Modules().write_module(key[0], key[1], key[2], 0)
+                    Modules().write_module(key['module'], key['p1'], key['p2'], 0)
                 time.sleep(1)
                 Modules().write_module(0, 0, 0, 0)
             return {'data': {'success': 'true'}}
