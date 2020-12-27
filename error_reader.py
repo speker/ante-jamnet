@@ -19,7 +19,7 @@ module_addr = {
 }
 
 
-def check_error():
+def get_error():
     for key in module_addr:
         bridge = module_addr[key]['bridge']
         io = module_addr[key]['io']
@@ -30,7 +30,31 @@ def check_error():
             print(str(key) + ' : ' + str(module_addr[key]['state']))
 
 
+def set_alarm(state):
+    Gpio.set_digital(13, state)
+
+
+def check_error():
+    modules = SqLite().get_errors()
+    alarm = 0
+    for key in modules:
+        module = key[0]
+        error = key[1]
+        clear = key[2]
+        if error == 1 and clear == 0:
+            alarm = 1
+    return alarm
+
+
 if __name__ == "__main__":
+    alarm_state = 0
     while True:
-        check_error()
+        if check_error() == 1 and alarm_state == 0:
+            alarm_state = 1
+            set_alarm(alarm_state)
+            print('alarm aç')
+        if check_error() == 0 and alarm_state == 1:
+            alarm_state = 0
+            set_alarm(alarm_state)
+            print('alarm kapat')
         time.sleep(1)

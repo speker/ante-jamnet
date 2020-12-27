@@ -42,3 +42,8 @@ class SqLite:
         self.db.cursor().execute(
             "UPDATE module_states SET error=" + str(value) + " where module_addr=" + str(module))
         self.db.commit()
+
+    def get_errors(self):
+        query = self.db.cursor().execute("SELECT module_addr,error,clear_error FROM module_states")
+        states = query.fetchall()
+        return states
