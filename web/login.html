@@ -54,10 +54,10 @@
         $('#login').click(function() {
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/clearerror",
+                url: "http://localhost:8000/api/login",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                data: '{"module":2,"password":""}',
+                data: '{"username":2,"password":""}',
                 success: function(data) {
             }
             });

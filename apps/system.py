@@ -19,8 +19,17 @@ class System(rest.Resource):
             work = Thread(target=self.reboot)
             work.start()
             return {'data': {'success': 'true'}}
+        elif action == "shutdown":
+            work = Thread(target=self.shutdown)
+            work.start()
+            return {'data': {'success': 'true'}}
 
     @staticmethod
     def reboot():
         time.sleep(5)
         os.system('sudo shutdown -r now')
+
+    @staticmethod
+    def shutdown():
+        time.sleep(5)
+        os.system('sudo shutdown -h now')
