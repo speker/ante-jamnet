@@ -50,7 +50,6 @@ if __name__ == "__main__":
     alarm_state = 0
     while True:
         get_error()
-        time.sleep(1)
         if check_error() == 1 and alarm_state == 0:
             alarm_state = 1
             set_alarm(alarm_state)
@@ -59,4 +58,5 @@ if __name__ == "__main__":
             alarm_state = 0
             set_alarm(alarm_state)
             print('alarm kapat')
+        time.sleep(1)
 
