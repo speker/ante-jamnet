@@ -9,7 +9,7 @@ module_addr = {
     4: {'bridge': 'gpio', 'io': 24, 'state': 0},
     5: {'bridge': 'gpio', 'io': 22, 'state': 0},
     6: {'bridge': 'gpio', 'io': 23, 'state': 0},
-    7: {'bridge': 'io_1', 'io': 9, 'state': 0},
+    7: {'bridge': None, 'io': None, 'state': 0},
     8: {'bridge': 'gpio', 'io': 17, 'state': 0},
     9: {'bridge': 'gpio', 'io': 18, 'state': 0},
     10: {'bridge': 'gpio', 'io': 15, 'state': 0},
@@ -23,8 +23,5 @@ for key in module_addr:
     if bridge is not None:
         if bridge == 'gpio':
             module_addr[key]['state'] = 1 - Gpio().get_digital(io)
-        elif bridge == 'io_0':
-            state = IoExpander(0X21).get_digital(1)
-        module_addr[key]['state'] = 0
         SqLite().set_error(key, module_addr[key]['state'])
         print(str(key) + ' : ' + str(module_addr[key]['state']))
