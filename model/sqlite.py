@@ -39,8 +39,12 @@ class SqLite:
         self.db.commit()
 
     def set_error(self, module, value):
-        self.db.cursor().execute(
-            "UPDATE module_states SET error=" + str(value) + " where module_addr=" + str(module))
+        if value == 0:
+            self.db.cursor().execute(
+                "UPDATE module_states SET error=" + str(value) + ", clear_error=0 where module_addr=" + str(module))
+        else:
+            self.db.cursor().execute(
+                "UPDATE module_states SET error=" + str(value) + " where module_addr=" + str(module))
         self.db.commit()
 
     def get_errors(self):
