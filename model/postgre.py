@@ -1,0 +1,4 @@
+
+
+class PostGre:
+    db = None
