@@ -1,5 +1,4 @@
 from model.sqlite import SqLite
-from helper.gpio import Gpio
 from helper.modules import Modules
 import time
 
@@ -31,8 +30,8 @@ def get_error():
 
 
 def set_alarm(state):
-    Gpio().set_digital(13, state)
     Modules().write_module('alarm', 0, 0, state)
+    Modules().write_module(1, 0, 0, state)
 
 
 def check_error():
