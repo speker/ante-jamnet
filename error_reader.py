@@ -25,4 +25,4 @@ for key in module_addr:
         module_addr[key]['state'] = Gpio().get_digital(io)
     elif bridge == 'io_0':
         module_addr[key]['state'] = 1
-    print(module_addr[key]['state'])
+    print(str(key) + ' : ' + str(module_addr[key]['state']))
