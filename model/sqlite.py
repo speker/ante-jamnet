@@ -12,7 +12,7 @@ class SqLite:
             self.db = connection
 
     def get_states(self):
-        query = self.db.cursor().execute("SELECT * FROM module_states where module_addr<15")
+        query = self.db.cursor().execute("SELECT * FROM module_states")
         states = query.fetchall()
         return states
 
