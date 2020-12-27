@@ -89,6 +89,10 @@ class Modules:
         except Exception as e:
             print(e)
 
+    @staticmethod
+    def read_gpio(port):
+        return Gpio().get_digital(port)
+
     def write_module(self, module_addr, p1, p2, power):
         modules = []
         if module_addr == 'clear_all':

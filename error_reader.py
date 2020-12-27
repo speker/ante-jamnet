@@ -25,7 +25,7 @@ def get_error():
         io = module_addr[key]['io']
         if bridge is not None:
             if bridge == 'gpio':
-                module_addr[key]['state'] = 1 - Gpio().get_digital(io)
+                module_addr[key]['state'] = 1 - Modules().read_gpio(io)
             SqLite().set_error(key, module_addr[key]['state'])
 
 
