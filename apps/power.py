@@ -38,6 +38,6 @@ class Power(rest.Resource):
     def wait_closer():
         SqLite().set_state(0, 0, 0, 0)
         time.sleep(60)
-        power_state = SqLite().get_state(0)[6]
+        power_state = SqLite().get_state(0)[4]
         if power_state == 0:
             Modules().write_module(0, 0, 0, 0)
