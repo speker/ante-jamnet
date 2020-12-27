@@ -5,6 +5,7 @@ import flask_restful as rest
 from flask import jsonify
 from helper.modules import Modules
 from threading import Thread
+from model.sqlite import SqLite
 
 
 class Power(rest.Resource):
@@ -35,5 +36,8 @@ class Power(rest.Resource):
 
     @staticmethod
     def wait_closer():
+        SqLite().set_state(0, 0, 0, 0)
         time.sleep(60)
-        Modules().write_module(0, 0, 0, 0)
+        power_state = SqLite().get_state(0)[6]
+        if power_state == 0:
+            Modules().write_module(0, 0, 0, 0)
