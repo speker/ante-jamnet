@@ -21,8 +21,8 @@ for key in module_addr:
     io = module_addr[key]['io']
     if bridge is not None:
         if bridge == 'gpio':
-            module_addr[key]['state'] = Gpio().get_digital(io)
+            module_addr[key]['state'] = 1 - Gpio().get_digital(io)
         elif bridge == 'io_0':
-            module_addr[key]['state'] = 1
+            module_addr[key]['state'] = 0
         SqLite().set_error(key, module_addr[key]['state'])
         print(str(key) + ' : ' + str(module_addr[key]['state']))
