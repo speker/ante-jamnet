@@ -37,3 +37,8 @@ class SqLite:
             "UPDATE module_states SET p1=" + str(p1) + ", p2=" + str(p2) + ", power=" + str(
                 power) + " where module_addr=" + str(module))
         self.db.commit()
+
+    def set_error(self, module, value):
+        self.db.cursor().execute(
+            "UPDATE module_states SET error=" + str(value) + " where module_addr=" + str(module))
+        self.db.commit()
