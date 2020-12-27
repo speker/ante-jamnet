@@ -1,4 +1,7 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except Exception as e:
+    print(e)
 
 
 class Gpio:
@@ -14,3 +17,8 @@ class Gpio:
             GPIO.output(port, GPIO.HIGH)
         elif output == 0:
             GPIO.output(port, GPIO.LOW)
+
+    @staticmethod
+    def get_digital(port):
+        GPIO.setup(port, GPIO.IN)
+        return GPIO.input(port)

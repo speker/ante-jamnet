@@ -11,8 +11,8 @@ class Modules:
     module_addr = {
         'alarm': {
             'power': {'bridge': 'io_0', 'io': 15},
-            'p1': {'bridge': None, 'io': None},
-            'p2': {'bridge': None, 'io': None}
+            'p1': {'bridge': 0, 'io': 0},
+            'p2': {'bridge': 0, 'io': 0}
         },
         0: {
             'power': {'bridge': 'io_0', 'io': 16},
