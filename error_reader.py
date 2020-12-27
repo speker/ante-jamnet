@@ -30,7 +30,7 @@ def get_error():
 
 
 def set_alarm(state):
-    Modules().write_module('alarm', 0, 0, state)
+    Modules().write_module(15, 0, 0, state)
     Modules().write_module(1, 0, 0, state)
 
 

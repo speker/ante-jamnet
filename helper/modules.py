@@ -9,7 +9,7 @@ class Modules:
     gpio = None
 
     module_addr = {
-        'alarm': {
+        15: {
             'power': {'bridge': 'io_0', 'io': 15},
             'p1': {'bridge': None, 'io': None},
             'p2': {'bridge': None, 'io': None}
