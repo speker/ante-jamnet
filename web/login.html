@@ -19,7 +19,6 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapınız</p>
-            <form id="loginForm"  method="post">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Kullanıcı Adı">
                     <div class="input-group-append">
@@ -41,7 +40,6 @@
                         <button type="button" id="login" class="btn btn-primary btn-block">Giriş</button>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>
@@ -50,24 +48,22 @@
 <script src="dist/js/adminlte.min.js"></script>
 <script>
 
+
+
     $(document).ready(function() {
-        var sendingData = {
-            name: "Odinfono Emmanuel",
-            phone: "1234567890"
-        }
         $('#login').click(function() {
             $.ajax({
-                type: "POST",
-                crossDomain: true,
-                url: "http://192.168.88.240:8000/api/clearerror",
-                dataType: 'json',
+                type: 'post',
                 xhrFields: {
-                    withCredentials: true
-                },
-                data: sendingData,
-                success: function(msg) {
-                    alert("Form Submitted: " + msg);
-                }
+                    withCredentials: true,
+                    crossDomain: true,
+                    Authorization: "Bearer sadfasdfsdfsdfsdfsdf"
+                },                url: "http://192.168.88.240:8000/api/clearerror",
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({module:2,password:''}),
+                success: function(data) {
+            }
             });
 
         });
