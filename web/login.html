@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +8,8 @@
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <link href="plugins/fontawesome-free/css/font.css" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
@@ -19,51 +20,61 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapınız</p>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Kullanıcı Adı">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
+            <div class="input-group" id="mesg"></div>
+            <div class="input-group mb-3">
+                <input type="text" id="username" class="form-control" placeholder="Kullanıcı Adı">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Şifre">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" id="password" class="form-control" placeholder="Şifre">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <button type="button" id="login" class="btn btn-primary btn-block">Giriş</button>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <button type="button" id="login" class="btn btn-primary btn-block">Giriş</button>
                 </div>
+            </div>
         </div>
     </div>
 </div>
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 <script>
+    $(document).ready(function () {
+        token = sessionStorage.getItem('token')
+        if (token != null) {
+            window.location.replace("index.html");
+        }
+            $('#login').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8000/api/login",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    data: '{"username":"' + $('#username').val() + '","password":"' + $('#password').val() + '"}',
+                    error: function (data) {
+                        toastr.error(data['responseJSON']['data']['message'])
+                    },
+                    success: function (data) {
 
-
-
-    $(document).ready(function() {
-        $('#login').click(function() {
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8000/api/login",
-                contentType: "application/json; charset=utf-8",
-                dataType: 'json',
-                data: '{"username":2,"password":""}',
-                success: function(data) {
-            }
+                        if (data['data']['success'] == true) {
+                            sessionStorage.setItem('token', data['data']['token']);
+                            window.location.replace("index.html");
+                        }
+                    }
+                });
             });
-
-        });
-
     });
 
 </script>
