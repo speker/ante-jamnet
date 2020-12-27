@@ -1,12 +1,79 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="/assets/js/jquery.min.js"></script>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ante Jamnet | Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link href="plugins/fontawesome-free/css/font.css" rel="stylesheet">
 </head>
-<body>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a><b>Ante</b>Jamnet</a>
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapınız</p>
+            <form id="loginForm"  method="post">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Kullanıcı Adı">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Şifre">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <button type="button" id="login" class="btn btn-primary btn-block">Giriş</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script>
 
+    $(document).ready(function() {
+        var sendingData = {
+            name: "Odinfono Emmanuel",
+            phone: "1234567890"
+        }
+        $('#login').click(function() {
+            $.ajax({
+                type: "POST",
+                crossDomain: true,
+                url: "http://192.168.88.240:8000/api/clearerror",
+                dataType: 'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: sendingData,
+                success: function(msg) {
+                    alert("Form Submitted: " + msg);
+                }
+            });
+
+        });
+
+    });
+
+</script>
 </body>
 </html>

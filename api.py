@@ -4,6 +4,7 @@ import _ast
 import inspect
 from flask import Flask, jsonify
 from flask_restful import Api
+from flask_cors import CORS
 
 host = '0.0.0.0'
 port = 5000
@@ -25,6 +26,7 @@ modules = [f for f in os.listdir(os.path.dirname(os.path.abspath(__file__)) + '/
            f.endswith('.py') and not f.startswith('__')]
 
 app = Flask(__name__)
+CORS(app)
 
 app.secret_key = 'ReActor2019!1..'
 handle_exceptions = app.handle_exception
@@ -32,6 +34,7 @@ handle_user_exception = app.handle_user_exception
 app.handle_user_exception = handle_exceptions
 app.handle_user_exception = handle_user_exception
 api = Api(app)
+
 print('Static Endpoints:')
 i = 1
 for module in modules:
