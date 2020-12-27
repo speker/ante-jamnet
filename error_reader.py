@@ -1,5 +1,6 @@
 from model.sqlite import SqLite
 from helper.gpio import Gpio
+from helper.modules import Modules
 import time
 
 module_addr = {
@@ -27,11 +28,11 @@ def get_error():
             if bridge == 'gpio':
                 module_addr[key]['state'] = 1 - Gpio().get_digital(io)
             SqLite().set_error(key, module_addr[key]['state'])
-            print(str(key) + ' : ' + str(module_addr[key]['state']))
 
 
 def set_alarm(state):
     Gpio().set_digital(13, state)
+    Modules().write_module('alarm', 0, 0, state)
 
 
 def check_error():
@@ -59,4 +60,3 @@ if __name__ == "__main__":
             set_alarm(alarm_state)
             print('alarm kapat')
         time.sleep(1)
-
