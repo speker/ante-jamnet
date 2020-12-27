@@ -35,5 +35,5 @@ class Power(rest.Resource):
 
     @staticmethod
     def wait_closer():
-        time.sleep(10)
+        time.sleep(60)
         Modules().write_module(0, 0, 0, 0)
