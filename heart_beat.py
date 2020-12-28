@@ -5,6 +5,7 @@ from subprocess import check_output
 from datetime import datetime
 from apps.get_temp import GetTemp
 
+
 def get_serial():
     cpu_serial = "0000000000000000"
     try:
@@ -30,5 +31,8 @@ def send_beat():
 
 if __name__ == "__main__":
     while True:
-        send_beat()
+        try:
+            send_beat()
+        except:
+            time.sleep(60)
         time.sleep(10)
