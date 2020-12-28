@@ -37,3 +37,10 @@ class PostGre:
             update = cur.execute(
                 "UPDATE network SET module_name=%s, module_ip=%s, module_last_beat=%s, module_temp=%s, module_alarm=%s where module_serial=%s",
                 (module_name, module_ip, module_last_beat, module_temp, module_alarm, module_serial,))
+
+
+    def get_network(self):
+        cur = self.db.cursor()
+        cur.execute("SELECT * from network order by module_name asc ")
+        rows = cur.fetchall()
+        return rows

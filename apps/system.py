@@ -4,6 +4,7 @@ from flask import jsonify
 import os
 import time
 from threading import Thread
+from subprocess import check_output
 
 
 class System(rest.Resource):
@@ -23,6 +24,13 @@ class System(rest.Resource):
             work = Thread(target=self.shutdown)
             work.start()
             return {'data': {'success': 'true'}}
+        elif action == "hostname":
+            data = os.system('hostnamectl set-hostname ' + data['hostname'])
+            return {'data': {'success': True, "message": "Modül Adı Değiştirildi"}}
+
+    @staticmethod
+    def get():
+        return {'data': {'success': True, 'hostname': check_output(['hostname']).decode("utf-8").strip()}}
 
     @staticmethod
     def reboot():

@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ante Jamnet | Jammer Network</title>
+    <title>Ante Jamnet | Settings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+
     <link href="plugins/fontawesome-free/css/font.css" rel="stylesheet">
 <body class="sidebar-mini layout-fixed" style="height: auto;">
 <div class="wrapper">
@@ -54,7 +56,7 @@
                                         <p>Dashboard</p>
                                     </a>
                                 </li>
-                              <li class="nav-item">
+                                <li class="nav-item">
                                     <a href="settings.html" class="nav-link">
                                         <i class="nav-icon fas fa-cogs"></i>
                                         <p>Ayarlar</p>
@@ -86,14 +88,29 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Jammer Network</h1>
+                        <h1 class="m-0 text-dark">Settings</h1>
                     </div>
                 </div>
             </div>
         </div>
         <section class="content">
             <div class="container-fluid">
-                <div class="row" id="jamnet-network">
+                <div class="row">
+                    <div class="col-md-4 card-body">
+                        <strong>Modül Adı</strong>
+                        <div class="input-group mb-3">
+                            <input type="text" id="module_name" class="form-control rounded-0">
+                            <span class="input-group-append">
+                    <button type="button" class="btn btn-info btn-flat" id="set_hostname">Kaydet</button>
+                  </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-block bg-gradient-danger" id="restart">Yeniden Başlat</button>
+                    <button type="button" class="btn btn-block bg-gradient-danger" id="shutdown">Sistemi Kapat</button>
+
                 </div>
             </div>
         </section>
@@ -117,6 +134,8 @@
 <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <script src="plugins/summernote/summernote-bs4.min.js"></script>
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
+
 <script>
     $(document).ready(function () {
         token = sessionStorage.getItem('token')
@@ -124,26 +143,85 @@
             window.location.replace("login.html");
             return null;
         } else {
-          get_network();
+            get_settings();
         }
-        var timer = setInterval(get_network, 5000);
 
-        function get_network() {
+        function get_settings() {
 
             $.ajax({
                 type: "GET",
-                url: "http://192.168.88.240:8000/api/network",
+                url: "http://192.168.88.240:8000/api/system",
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
                 success: function (data) {
                     if (data['data']['success'] == true) {
-                        $("#jamnet-network").html(data['data']['payload']);
+                        $("#module_name").val(data['data']['hostname']);
                     }
                 }
             });
 
         }
+
+        $('#set_hostname').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/system",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: '{"action":"hostname","hostname":"' + $('#module_name').val() + '"}',
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success(data['data']['message'])
+
+                    }
+                }
+            });
+        });
+
+        $('#restart').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/system",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: '{"action":"restart"}',
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success(data['data']['message'])
+
+                    }
+                }
+            });
+        });
+
+        $('#shutdown').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/system",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: '{"action":"shutdown"}',
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success(data['data']['message'])
+
+                    }
+                }
+            });
+        });
 
 
     });
