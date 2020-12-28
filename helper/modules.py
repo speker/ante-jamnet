@@ -49,32 +49,32 @@ class Modules:
             'p1': {'bridge': 'io_0', 'io': 11},
             'p2': {'bridge': 'io_0', 'io': 12}
         },
+        # 7: {
+        #     'power': {'bridge': 'gpio', 'io': 21},
+        #     'p1': {'bridge': 'io_1', 'io': 14},
+        #     'p2': {'bridge': 'io_1', 'io': 13}
+        # },
         7: {
-            'power': {'bridge': 'gpio', 'io': 21},
-            'p1': {'bridge': 'io_1', 'io': 14},
-            'p2': {'bridge': 'io_1', 'io': 13}
-        },
-        8: {
             'power': {'bridge': 'gpio', 'io': 16},
             'p1': {'bridge': 'io_1', 'io': 12},
             'p2': {'bridge': 'io_1', 'io': 11}
         },
-        9: {
+        8: {
             'power': {'bridge': 'gpio', 'io': 20},
             'p1': {'bridge': 'io_1', 'io': 10},
             'p2': {'bridge': 'io_1', 'io': 9}
         },
-        10: {
+        9: {
             'power': {'bridge': 'gpio', 'io': 26},
             'p1': {'bridge': 'io_1', 'io': 8},
             'p2': {'bridge': 'io_1', 'io': 7}
         },
-        11: {
-            'power': {'bridge': 'gpio', 'io': 13},
-            'p1': {'bridge': 'io_1', 'io': 6},
-            'p2': {'bridge': 'io_1', 'io': 5}
-        },
-        12: {
+        # 11: {
+        #     'power': {'bridge': 'gpio', 'io': 13},
+        #     'p1': {'bridge': 'io_1', 'io': 6},
+        #     'p2': {'bridge': 'io_1', 'io': 5}
+        # },
+        10: {
             'power': {'bridge': 'gpio', 'io': 19},
             'p1': {'bridge': 'io_1', 'io': 4},
             'p2': {'bridge': 'io_1', 'io': 3}
@@ -101,8 +101,7 @@ class Modules:
             return None
         elif module_addr == "all":
             for i in range(13):
-                if i != 7 or i != 11:
-                    modules.append(i)
+                modules.append(i)
         else:
             modules.append(module_addr)
 

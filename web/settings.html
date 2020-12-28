@@ -146,6 +146,11 @@
             get_settings();
         }
 
+
+        function redirect(){
+            window.location.replace("login.html");
+        }
+
         function get_settings() {
 
             $.ajax({
@@ -197,7 +202,7 @@
 
                     if (data['data']['success'] == true) {
                         toastr.success("İşlem Başarılı")
-                        setTimeout(redirect, 5000);
+                        setTimeout(redirect, 10000);
                     }
                 }
             });
@@ -217,15 +222,12 @@
 
                     if (data['data']['success'] == true) {
                         toastr.success("İşlem Başarılı")
-                        setTimeout(redirect, 5000);
+                        setTimeout(redirect, 10000);
 
                     }
                 }
             });
 
-            function redirect(){
-                window.location.replace("login.html");
-            }
         });
 
 
