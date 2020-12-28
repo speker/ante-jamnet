@@ -196,7 +196,8 @@
                 success: function (data) {
 
                     if (data['data']['success'] == true) {
-                        window.location.replace("login.html");
+                        toastr.success("İşlem Başarılı")
+                        setTimeout(redirect, 5000);
                     }
                 }
             });
@@ -215,11 +216,16 @@
                 success: function (data) {
 
                     if (data['data']['success'] == true) {
-                        window.location.replace("login.html");
+                        toastr.success("İşlem Başarılı")
+                        setTimeout(redirect, 5000);
 
                     }
                 }
             });
+
+            function redirect(){
+                window.location.replace("login.html");
+            }
         });
 
 

@@ -19,11 +19,11 @@ class System(rest.Resource):
         if action == "restart":
             work = Thread(target=self.reboot)
             work.start()
-            return {'data': {'success': 'true'}}
+            return {'data': {'success': True}}
         elif action == "shutdown":
             work = Thread(target=self.shutdown)
             work.start()
-            return {'data': {'success': 'true'}}
+            return {'data': {'success': True}}
         elif action == "hostname":
             data = os.system('hostnamectl set-hostname ' + data['hostname'])
             return {'data': {'success': True, "message": "Modül Adı Değiştirildi"}}
