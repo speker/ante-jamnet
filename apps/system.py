@@ -42,7 +42,7 @@ class System(rest.Resource):
             else:
                 is_active = ""
             temp = self.module_template
-            temp = temp.replace("|module_id|", module_id)
+            temp = temp.replace("|module_id|", str(module_id))
             temp = temp.replace("|module_name|", module_name)
             temp = temp.replace("|is_active|", is_active)
             module_data.append(temp)
