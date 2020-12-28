@@ -55,3 +55,12 @@ class SqLite:
         query = self.db.cursor().execute("SELECT module_addr,error,clear_error FROM module_states")
         states = query.fetchall()
         return states
+
+    def get_error_state(self):
+        query = self.db.cursor().execute(
+            "SELECT module_addr,error,clear_error FROM module_states where error='1' and clear_error='0' ")
+        states = query.fetchone()
+        if states is None:
+            return 0
+        else:
+            return 1
