@@ -5,6 +5,7 @@ import os
 import time
 from threading import Thread
 from subprocess import check_output
+from model.sqlite import SqLite
 
 
 class System(rest.Resource):
@@ -30,7 +31,8 @@ class System(rest.Resource):
 
     @staticmethod
     def get():
-        return {'data': {'success': True, 'hostname': check_output(['hostname']).decode("utf-8").strip()}}
+        return {'data': {'success': True, 'hostname': check_output(['hostname']).decode("utf-8").strip(),
+                         "modules": SqLite().get_states()}}
 
     @staticmethod
     def reboot():
