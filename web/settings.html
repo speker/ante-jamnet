@@ -97,9 +97,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4 card-body">
-                        <strong>Modül Adı</strong>
+                        <strong>Sistem Adı</strong>
                         <div class="input-group mb-3">
-                            <input type="text" id="module_name" class="form-control rounded-0">
+                            <input type="text" id="system_name" class="form-control rounded-0">
                             <span class="input-group-append">
                     <button type="button" class="btn btn-info btn-flat" id="set_hostname">Kaydet</button>
                   </span>
@@ -107,6 +107,35 @@
                     </div>
 
                 </div>
+                </div>
+            <div class="row" id="jamnet-modules">
+                <div class="col-md-3">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">|module_id|</h3>
+                        </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="module_name-|module_id|">Modül Adı</label>
+                                    <input type="text" class="form-control" id="module_name-|module_id|" value="|module_name|" placeholder="Modül Adı">
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="is_active-|module_id|" |is_active|>
+                                    <label class="form-check-label" for="is_active-|module_id|" >Aktif</label>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" id="save-|module_id|" class="btn btn-success">Kaydet</button>
+                            </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+
                 <div class="col-md-2">
                     <button type="button" class="btn btn-block bg-gradient-danger" id="restart">Yeniden Başlat</button>
                     <button type="button" class="btn btn-block bg-gradient-danger" id="shutdown">Sistemi Kapat</button>
@@ -161,7 +190,7 @@
                 },
                 success: function (data) {
                     if (data['data']['success'] == true) {
-                        $("#module_name").val(data['data']['hostname']);
+                        $("#system_name").val(data['data']['hostname']);
                     }
                 }
             });
@@ -174,7 +203,7 @@
                 url: "http://192.168.88.240:8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                data: '{"action":"hostname","hostname":"' + $('#module_name').val() + '"}',
+                data: '{"action":"hostname","hostname":"' + $('#system_name').val() + '"}',
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
