@@ -61,6 +61,6 @@ class SqLite:
             "SELECT module_addr,error,clear_error FROM module_states where error='1' and clear_error='0' ")
         states = query.fetchone()
         if states is None:
-            return 0
+            return False
         else:
-            return 1
+            return True
