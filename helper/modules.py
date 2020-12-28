@@ -100,7 +100,7 @@ class Modules:
             self.io_1.set_all_clear()
             return None
         elif module_addr == "all":
-            for i in range(13):
+            for i in range(11):
                 modules.append(i)
         else:
             modules.append(module_addr)
