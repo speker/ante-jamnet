@@ -196,8 +196,7 @@
                 success: function (data) {
 
                     if (data['data']['success'] == true) {
-                        toastr.success(data['data']['message'])
-
+                        window.location.replace("login.html");
                     }
                 }
             });
@@ -216,7 +215,7 @@
                 success: function (data) {
 
                     if (data['data']['success'] == true) {
-                        toastr.success(data['data']['message'])
+                        window.location.replace("login.html");
 
                     }
                 }
