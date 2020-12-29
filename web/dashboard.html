@@ -118,8 +118,17 @@
     $(function () {
         $(document).on("click", '[id^=module_off_]', function () {
             clicker = event.target.id.replace("module_off_", "");
-            module_name = $('#module_off_' + clicker).val()
-            alert(module_name)
+            power_state = $('#module_off_' + clicker).val()
+            high_state = $('#module_high_' + clicker).val()
+            middle_state = $('#module_middle_' + clicker).val()
+            low_state = $('#module_low_' + clicker).val()
+            if (power_state=="1"){
+                power_val=0;
+            }
+            else {
+                power_val=1;
+            }
+            alert(power_val)
             // json_data = '{"action":"save_module","module_id":' + clicker + ',"module_name":"' + module_name + '","is_active":' + is_active + '}';
 
         //     $.ajax({
