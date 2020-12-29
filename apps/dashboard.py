@@ -69,7 +69,7 @@ class Dashboard(rest.Resource):
                 temp = temp.replace("|module_power_state|", module_power_state)
                 temp = temp.replace("|module_off|", module_off)
                 temp = temp.replace("|module_state|", module_state)
-                temp = temp.replace("|module_state_level|", module_state_level)
+                temp = temp.replace("|module_state_level|", str(module_state_level))
                 module_data.append(temp)
 
         return {'data': {'success': True, 'modules': ''.join(module_data)}}
