@@ -2,6 +2,7 @@
 import flask_restful as rest
 from flask import jsonify
 from helper.modules import Modules
+from model.sqlite import SqLite
 
 
 class SetModule(rest.Resource):
@@ -18,6 +19,13 @@ class SetModule(rest.Resource):
         p2 = data['p2']
         power = data['power']
         try:
+            if module_addr == 0:
+                all_module = SqLite().get_states()
+                for module in all_module:
+                    if module[7] == 1:
+                        Modules().write_module(module[0], module[1], module[2], power)
+                return {'data': {'success': True}}
+
             Modules().write_module(module_addr, p1, p2, power)
             return {'data': {'success': True}}
         except Exception as e:
