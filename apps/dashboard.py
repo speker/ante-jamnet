@@ -69,7 +69,6 @@ class Dashboard(rest.Resource):
                     temp = self.module_template_0
                 else:
                     temp = self.module_template
-                temp = self.module_template
                 temp = temp.replace("|module_id|", str(module_id))
                 temp = temp.replace("|module_name|", module_name)
                 temp = temp.replace("|module_high|", module_high)
