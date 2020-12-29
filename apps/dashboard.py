@@ -22,6 +22,8 @@ class Dashboard(rest.Resource):
             module_power = key[4]
             module_name = key[5]
             module_clear = key[6]
+            module_is_active = key[7]
+
             module_calc = str(module_p1) + str(module_p2)
 
             module_high = "default"
@@ -32,17 +34,17 @@ class Dashboard(rest.Resource):
                 module_high = "secondary"
                 module_middle = "default"
                 module_low = "default"
-                module_state_level=100
+                module_state_level = 100
             elif module_calc == "10":
                 module_high = "default"
                 module_middle = "secondary"
                 module_low = "default"
-                module_state_level=50
+                module_state_level = 50
             elif module_calc == "01":
                 module_high = "default"
                 module_middle = "default"
                 module_low = "secondary"
-                module_state_level=25
+                module_state_level = 25
             if module_power == 1:
                 module_power_state = "Off"
                 module_off = "danger"
@@ -52,12 +54,11 @@ class Dashboard(rest.Resource):
                     module_state = "success"
                 else:
                     module_state = "success"
-                    module_state_level=50
+                    module_state_level = 50
             else:
                 module_power_state = "On"
                 module_off = "success"
                 module_state = "danger"
-            module_is_active = key[7]
             if module_is_active == 1:
                 temp = self.module_template
                 temp = temp.replace("|module_id|", str(module_id))
