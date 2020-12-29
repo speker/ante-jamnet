@@ -148,9 +148,9 @@
 
 <script>
     $(function() {
-         function save_module(id) {
+        $(document).on("click", 'btnbtn btn-success', function() {
             alert("You have just clicked on ");
-        };
+        });
     });
     $(document).ready(function () {
         token = sessionStorage.getItem('token')
