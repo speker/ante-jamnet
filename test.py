@@ -24,7 +24,7 @@
 <input type="radio" name="options" id="module_low_|module_id|"> Low
 </label>
 <label class="btn btn-|module_off| ">
-<input type="radio" name="options" id="module_off_|module_id|"> Off
+<input type="radio" name="options" id="module_off_|module_id|" > Off
 </label>
 </div>
 </div>

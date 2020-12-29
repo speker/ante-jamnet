@@ -115,6 +115,32 @@
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
+    $(function () {
+        $(document).on("click", '[id^=module_off_]', function () {
+            clicker = event.target.id.replace("module_off_", "");
+            module_name = $('#module_off_' + clicker).attr('value');
+            alert(module_name)
+            // json_data = '{"action":"save_module","module_id":' + clicker + ',"module_name":"' + module_name + '","is_active":' + is_active + '}';
+
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "http://192.168.88.240:8000/api/system",
+        //         contentType: "application/json; charset=utf-8",
+        //         dataType: 'json',
+        //         data: json_data,
+        //         error: function (data) {
+        //             toastr.error(data['responseJSON']['data']['message'])
+        //         },
+        //         success: function (data) {
+        //
+        //             if (data['data']['success'] == true) {
+        //                 toastr.success(data['data']['message'])
+        //
+        //             }
+        //         }
+        //     });
+});
+    });
     $(document).ready(function () {
         token = sessionStorage.getItem('token')
         if (token == null) {
