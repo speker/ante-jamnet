@@ -19,7 +19,7 @@ class SetModule(rest.Resource):
         power = data['power']
         try:
             Modules().write_module(module_addr, p1, p2, power)
-            return {'data': {'success': 'true'}}
+            return {'data': {'success': True}}
         except Exception as e:
             response = jsonify({'data': {'success': False, 'code': 500, 'message': e}})
             response.status_code = 500
