@@ -190,7 +190,7 @@ var JQVMap = function (params) {
   jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'click', function (regionClickEvent) {
 
     var targetPath = regionClickEvent.target;
-    var code = regionClickEvent.target.id.split('_').pop();
+    var code = regionClickthis.id.split('_').pop();
     var mapClickEvent = jQuery.Event('regionClick.jqvmap');
 
     code = code.toLowerCase();

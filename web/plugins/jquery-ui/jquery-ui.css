@@ -695,7 +695,7 @@ button.ui-button::-moz-focus-inner {
 .ui-selectmenu-menu .ui-menu .ui-selectmenu-optgroup {
 	font-size: 1em;
 	font-weight: bold;
-	line-height: 1.5;
+	line-height: 1;
 	padding: 2px 0.4em;
 	margin: 0.5em 0 0 0;
 	height: auto;

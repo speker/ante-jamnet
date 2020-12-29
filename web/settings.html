@@ -187,7 +187,7 @@
 <script>
     $(function () {
         $(document).on("click", '[id^=save_]', function () {
-            clicker = event.target.id.replace("save_", "");
+            clicker = this.id.replace("save_", "");
             module_name = $('#module_name_' + clicker).val()
             if ($('#is_active_' + clicker).is(':checked')) {
                 is_active = 1;

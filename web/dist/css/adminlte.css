@@ -63,7 +63,7 @@ body {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   color: #212529;
   text-align: left;
   background-color: #ffffff;
@@ -2049,7 +2049,7 @@ pre code {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   color: #495057;
   background-color: #ffffff;
   background-clip: padding-box;
@@ -2129,21 +2129,21 @@ select.form-control:focus::-ms-value {
   padding-bottom: calc(0.375rem + 1px);
   margin-bottom: 0;
   font-size: inherit;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .col-form-label-lg {
   padding-top: calc(0.5rem + 1px);
   padding-bottom: calc(0.5rem + 1px);
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height:1;
 }
 
 .col-form-label-sm {
   padding-top: calc(0.25rem + 1px);
   padding-bottom: calc(0.25rem + 1px);
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .form-control-plaintext {
@@ -2152,7 +2152,7 @@ select.form-control:focus::-ms-value {
   padding: 0.375rem 0;
   margin-bottom: 0;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1;
   color: #212529;
   background-color: transparent;
   border: solid transparent;
@@ -2168,7 +2168,7 @@ select.form-control:focus::-ms-value {
   height: calc(1.8125rem + 2px);
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.2rem;
 }
 
@@ -2176,7 +2176,7 @@ select.form-control:focus::-ms-value {
   height: calc(2.875rem + 2px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.3rem;
 }
 
@@ -2266,7 +2266,7 @@ textarea.form-control {
   padding: 0.25rem 0.5rem;
   margin-top: .1rem;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1;
   color: #ffffff;
   background-color: rgba(40, 167, 69, 0.9);
   border-radius: 0.25rem;
@@ -2366,7 +2366,7 @@ textarea.form-control {
   padding: 0.25rem 0.5rem;
   margin-top: .1rem;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1;
   color: #ffffff;
   background-color: rgba(220, 53, 69, 0.9);
   border-radius: 0.25rem;
@@ -2537,9 +2537,9 @@ textarea.form-control {
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
+  padding: 0.250rem 0.50rem;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.0;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -3158,14 +3158,14 @@ fieldset:disabled a.btn {
 .btn-lg, .btn-group-lg > .btn {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.3rem;
 }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.2rem;
 }
 
@@ -3721,7 +3721,7 @@ input[type="button"].btn-block {
   margin-bottom: 0;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   color: #495057;
   text-align: center;
   white-space: nowrap;
@@ -3748,7 +3748,7 @@ input[type="button"].btn-block {
 .input-group-lg > .input-group-append > .btn {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.3rem;
 }
 
@@ -3765,7 +3765,7 @@ input[type="button"].btn-block {
 .input-group-sm > .input-group-append > .btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.2rem;
 }
 
@@ -3961,7 +3961,7 @@ input[type="button"].btn-block {
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   color: #495057;
   vertical-align: middle;
   background: #ffffff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center/8px 10px;
@@ -4064,7 +4064,7 @@ input[type="button"].btn-block {
   height: calc(2.25rem + 2px);
   padding: 0.375rem 0.75rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   color: #495057;
   background-color: #ffffff;
   border: 1px solid #ced4da;
@@ -4081,7 +4081,7 @@ input[type="button"].btn-block {
   display: block;
   height: 2.25rem;
   padding: 0.375rem 0.75rem;
-  line-height: 1.5;
+  line-height: 1;
   color: #495057;
   content: "Browse";
   background-color: #e9ecef;
@@ -4804,7 +4804,7 @@ input[type="button"].btn-block {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 0.50rem;
+  padding: 1.25rem;
 }
 
 .card-title {
@@ -4871,7 +4871,7 @@ input[type="button"].btn-block {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 0.50rem;
+  padding: 1.25rem;
 }
 
 .card-img,
@@ -5100,7 +5100,7 @@ input[type="button"].btn-block {
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .pagination-lg .page-item:first-child .page-link {
@@ -5116,7 +5116,7 @@ input[type="button"].btn-block {
 .pagination-sm .page-link {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .pagination-sm .page-item:first-child .page-link {
@@ -6103,7 +6103,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .modal-title {
   margin-bottom: 0;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .modal-body {
@@ -6186,7 +6186,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   text-align: left;
   text-align: start;
   text-decoration: none;
@@ -6299,7 +6299,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   text-align: left;
   text-align: start;
   text-decoration: none;
@@ -11699,7 +11699,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 .brand-link {
   display: block;
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1;
   padding: 0.8125rem 0.5rem;
   transition: width 0.3s ease-in-out;
   white-space: nowrap;
@@ -13945,7 +13945,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   background-color: rgba(255, 193, 7, 0.9);
   color: #1F2D3D;
   display: none;
-  line-height: 1.5;
+  line-height: 1;
   margin-top: .1rem;
   max-width: 100%;
   padding: 0.25rem 0.5rem;
@@ -18783,7 +18783,7 @@ html.maximized-card {
 .btn-xs {
   padding: 0.125rem 0.25rem;
   font-size: 0.75rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.15rem;
 }
 
@@ -20391,9 +20391,9 @@ html.maximized-card {
 .login-card-body .input-group .input-group-text,
 .register-card-body .input-group .input-group-text {
   background-color: transparent;
-  border-bottom-right-radius: 0.50rem;
+  border-bottom-right-radius: 0.25rem;
   border-left: 0;
-  border-top-right-radius: 0.50rem;
+  border-top-right-radius: 0.25rem;
   color: #777;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -22998,7 +22998,7 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   text-align: left;
   text-align: start;
   text-decoration: none;
@@ -26945,7 +26945,7 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
 .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-off,
 .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-label {
   font-size: .875rem;
-  line-height: 1.5;
+  line-height: 1;
   padding: .1rem .3rem;
 }
 
@@ -26953,7 +26953,7 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
 .bootstrap-switch.bootstrap-switch-small .bootstrap-switch-handle-off,
 .bootstrap-switch.bootstrap-switch-small .bootstrap-switch-label {
   font-size: .875rem;
-  line-height: 1.5;
+  line-height: 1;
   padding: .2rem .4rem;
 }
 

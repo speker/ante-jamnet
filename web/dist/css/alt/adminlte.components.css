@@ -78,7 +78,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   background-color: rgba(255, 193, 7, 0.9);
   color: #1F2D3D;
   display: none;
-  line-height: 1.5;
+  line-height: 1;
   margin-top: .1rem;
   max-width: 100%;
   padding: 0.25rem 0.5rem;
@@ -4916,7 +4916,7 @@ html.maximized-card {
 .btn-xs {
   padding: 0.125rem 0.25rem;
   font-size: 0.75rem;
-  line-height: 1.5;
+  line-height: 1;
   border-radius: 0.15rem;
 }
 

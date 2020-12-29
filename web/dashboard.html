@@ -134,9 +134,9 @@
     $(function () {
 
         $(document).on("click", '[id^=module_high_]', function () {
-            clicker = event.target.id.replace("module_high_", "");
+            clicker = this.id.replace("module_high_", "");
 
-            json_data = '{"module":'+clicker+',"p1":0,"p2":0,"power":1}';
+            json_data = '{"module":' + clicker + ',"p1":0,"p2":0,"power":1}';
             $.ajax({
                 type: "POST",
                 url: "http://192.168.88.240:8000/api/setmodule",
@@ -158,9 +158,9 @@
             });
         });
         $(document).on("click", '[id^=module_middle_]', function () {
-            clicker = event.target.id.replace("module_middle_", "");
+            clicker = this.id.replace("module_middle_", "");
 
-            json_data = '{"module":'+clicker+',"p1":1,"p2":0,"power":1}';
+            json_data = '{"module":' + clicker + ',"p1":1,"p2":0,"power":1}';
             $.ajax({
                 type: "POST",
                 url: "http://192.168.88.240:8000/api/setmodule",
@@ -182,9 +182,9 @@
             });
         });
         $(document).on("click", '[id^=module_low_]', function () {
-            clicker = event.target.id.replace("module_low_", "");
+            clicker = this.id.replace("module_low_", "");
 
-            json_data = '{"module":'+clicker+',"p1":0,"p2":1,"power":1}';
+            json_data = '{"module":' + clicker + ',"p1":0,"p2":1,"power":1}';
             $.ajax({
                 type: "POST",
                 url: "http://192.168.88.240:8000/api/setmodule",
@@ -208,9 +208,9 @@
 
 
         $(document).on("click", '[id^=clear_alarm_]', function () {
-            clicker = event.target.id.replace("clear_alarm_", "");
 
-            json_data = '{"module":'+clicker+'}';
+            clicker = this.id.replace("clear_alarm_", "");
+            json_data = '{"module":' + clicker + '}';
             $.ajax({
                 type: "POST",
                 url: "http://192.168.88.240:8000/api/clearerror",
@@ -234,37 +234,40 @@
 
 
         $(document).on("click", '[id^=module_off_]', function () {
-            clicker = event.target.id.replace("module_off_", "");
+            clicker = this.id.replace("module_off_", "");
             module_state = $('#module_off_' + clicker).val()
             power_state = module_state.substr(0, 1);
             p1_val = module_state.substr(1, 1);
             p2_val = module_state.substr(2, 1);
             if (power_state == "1") {
                 power_val = 0;
+                toast_message="Modül Gücü Kapatıldı."
             } else {
                 power_val = 1;
+                toast_message="Modül Gücü Açıldı."
+
             }
-            json_data = '{"module":'+clicker+',"p1":' + p1_val + ',"p2":' + p2_val + ',"power":' + power_val + '}';
+            json_data = '{"module":' + clicker + ',"p1":' + p1_val + ',"p2":' + p2_val + ',"power":' + power_val + '}';
 
-                $.ajax({
-                    type: "POST",
-                    url: "http://192.168.88.240:8000/api/setmodule",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: 'json',
-                    data: json_data,
-                    error: function (data) {
-                        toastr.error(data['responseJSON']['data']['message'])
-                    },
-                    success: function (data) {
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/setmodule",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: json_data,
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
 
-                        if (data['data']['success'] == true) {
-                            toastr.success("İşlem Gerçekleştirildi")
-                            get_dashboard();
+                    if (data['data']['success'] == true) {
+                        toastr.success(toast_message)
+                        get_dashboard();
 
 
-                        }
                     }
-                });
+                }
+            });
         });
     });
     $(document).ready(function () {
@@ -276,8 +279,6 @@
             get_dashboard();
         }
         var timer = setInterval(get_dashboard, 5000);
-
-
 
 
     });
