@@ -78,5 +78,5 @@ class SqLite:
 
     def set_system_value(self, system, value):
         self.db.cursor().execute(
-            "UPDATE system SET value=" + str(value) + " where system=" + str(system))
+            "UPDATE system SET value='" + str(value) + "' where system=" + str(system))
         self.db.commit()
