@@ -53,9 +53,14 @@ class System(rest.Resource):
             temp = temp.replace("|module_name|", module_name)
             temp = temp.replace("|is_active|", is_active)
             module_data.append(temp)
-
+        pg_ip = SqLite().get_system_value('pg_ip')
+        pg_port = SqLite().get_system_value('pg_port')
+        pg_username = SqLite().get_system_value('pg_username')
+        pg_password = SqLite().get_system_value('pg_password')
         return {'data': {'success': True, 'hostname': check_output(['hostname']).decode("utf-8").strip(),
-                         "modules": ''.join(module_data)}}
+                         'modules': ''.join(module_data),
+                         'pg_db': {'pg_ip': pg_ip, 'pg_port': pg_port, 'pg_username': pg_username,
+                                   'pg_password': pg_password}}}
 
     @staticmethod
     def reboot():

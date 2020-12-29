@@ -70,3 +70,8 @@ class SqLite:
             "UPDATE module_states SET module_name='" + module_name + "', is_active=" + str(
                 is_active) + " where module_addr=" + str(module_id))
         self.db.commit()
+
+    def get_system_value(self, system):
+        query = self.db.cursor().execute("SELECT value FROM system where system='" + str(system)+"'")
+        value = query.fetchone()
+        return value[0]
