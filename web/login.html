@@ -59,7 +59,7 @@
             $('#login').click(function () {
                 $.ajax({
                     type: "POST",
-                    url: ":8000/api/login",
+                    url: "http://"+window.location.hostname+":8000/api/login",
                     contentType: "application/json; charset=utf-8",
                     dataType: 'json',
                     data: '{"username":"' + $('#username').val() + '","password":"' + $('#password').val() + '"}',

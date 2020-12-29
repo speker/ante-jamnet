@@ -132,7 +132,7 @@
 
             $.ajax({
                 type: "GET",
-                url: ":8000/api/network",
+                url: "http://"+window.location.hostname+":8000/api/network",
                 error: function (data) {
                     toastr.error('Veritabanı Bağlantı Hatası')
                 },
