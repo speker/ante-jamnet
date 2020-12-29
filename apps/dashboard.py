@@ -57,11 +57,12 @@ class Dashboard(rest.Resource):
                     module_state = "success"
                 else:
                     module_state = "success"
-                    module_state_level = 0
             else:
                 module_power_state = "On"
                 module_off = "success"
                 module_state = "danger"
+                module_state_level = 0
+
             if module_is_active == 1:
                 temp = self.module_template
                 temp = temp.replace("|module_id|", str(module_id))
