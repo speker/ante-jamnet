@@ -173,6 +173,9 @@
                     if (data['data']['success'] == true) {
                         $("#system_name").val(data['data']['hostname']);
                         $("#jamnet-modules").html(data['data']['modules']);
+                        $("btn btn-success").on("click", "p.test", function(){
+                            save_module();
+                        });
                     }
                 }
             });
@@ -239,9 +242,27 @@
                 }
             });
         });
-        $('.btn btn-success').on('click', 'button', function(){
-            toastr.success("İşlem Başarılı")
-        });
+           function save_module(id) {
+               toastr.success("save İşlem Başarılı")
+
+               $.ajax({
+                   type: "POST",
+                   url: "http://192.168.88.240:8000/api/system",
+                   contentType: "application/json; charset=utf-8",
+                   dataType: 'json',
+                   data: '{"action":"fff"}',
+                   error: function (data) {
+                       toastr.error(data['responseJSON']['data']['message'])
+                   },
+                   success: function (data) {
+
+                       if (data['data']['success'] == true) {
+                           toastr.success("save İşlem Başarılı")
+
+                       }
+                   }
+               });
+           }
 
 
 
