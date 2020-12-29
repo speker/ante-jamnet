@@ -29,17 +29,17 @@ class Dashboard(rest.Resource):
             module_low = "default"
 
             if module_calc == "00":
-                module_high = "success"
+                module_high = "secondary"
                 module_middle = "default"
                 module_low = "default"
             elif module_calc == "10":
                 module_high = "default"
-                module_middle = "warning"
+                module_middle = "secondary"
                 module_low = "default"
             elif module_calc == "01":
                 module_high = "default"
                 module_middle = "default"
-                module_low = "danger"
+                module_low = "secondary"
             if module_power == 1:
                 module_power_state = "Off"
                 module_off = "danger"
