@@ -148,9 +148,8 @@
 
 <script>
     $(function() {
-        $("#save-1").live('click', function(){
-
-            alert("You have just clicked on ");
+        $(document).on("click", '[id^=save-]', function() {
+            alert(event.target.id);
         });
     });
     $(document).ready(function () {
