@@ -148,8 +148,10 @@
 
 <script>
     $(function() {
-        $(document).on("click", '[id^=save-]', function() {
-            alert(event.target.id);
+        $(document).on("click", '[id^=save_]', function() {
+            clicker=event.target.id.replace("save_","");
+            module_name=
+            alert(clicker)
         });
     });
     $(document).ready(function () {
