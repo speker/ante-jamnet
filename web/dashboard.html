@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ante Jamnet | Jammer Network</title>
+    <title>Ante Jamnet | Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -54,7 +54,7 @@
                                         <p>Dashboard</p>
                                     </a>
                                 </li>
-                              <li class="nav-item">
+                                <li class="nav-item">
                                     <a href="settings.html" class="nav-link">
                                         <i class="nav-icon fas fa-cogs"></i>
                                         <p>Ayarlar</p>
@@ -86,14 +86,50 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Jammer Network</h1>
+                        <h1 class="m-0 text-dark">Dashboard</h1>
                     </div>
                 </div>
             </div>
         </div>
         <section class="content">
             <div class="container-fluid">
-                <div class="row" id="jamnet-network">
+                <div class="row" id="jamnet-dashboard">
+
+
+                        <div class="col-md-3">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">Modül : |module_id| - |module_name|</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" id="clear_alarm_|module_id|"><i class="fas fa-volume-off"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body" style="display: block;">
+                                    <span><strong>Power</strong></span>
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar bg-|module_progress|" role="progressbar" style="width: |module_state|%">
+                                        </div>
+                                    </div>
+                                    <div class="btn-group btn-group-toggle"  data-toggle="buttons">
+                                        <label class="btn btn-|module_high|">
+                                            <input type="radio" name="options" id="module_high_|module_id|" > High
+                                        </label>
+                                        <label class="btn btn-|module_middle|">
+                                            <input type="radio" name="options" id="module_middle_|module_id|" > Middle
+                                        </label>
+                                        <label class="btn btn-|module_low|">
+                                            <input type="radio" name="options" id="module_low_|module_id|"> Low
+                                        </label>
+                                        <label class="btn btn-|module_off| ">
+                                            <input type="radio" name="options" id="module_off_|module_id|"> Off
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                 </div>
             </div>
         </section>
@@ -109,14 +145,6 @@
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="plugins/chart.js/Chart.min.js"></script>
-<script src="plugins/sparklines/sparkline.js"></script>
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script>
     $(document).ready(function () {
         token = sessionStorage.getItem('token')
@@ -124,21 +152,21 @@
             window.location.replace("login.html");
             return null;
         } else {
-          get_network();
+            get_dashboard();
         }
-        var timer = setInterval(get_network, 5000);
+        var timer = setInterval(get_dashboard, 5000);
 
-        function get_network() {
+        function get_dashboard() {
 
             $.ajax({
                 type: "GET",
-                url: "http://192.168.88.240:8000/api/network",
+                url: "http://192.168.88.240:8000/api/dashboard",
                 error: function (data) {
                     toastr.error('Veritabanı Bağlantı Hatası')
                 },
                 success: function (data) {
                     if (data['data']['success'] == true) {
-                        $("#jamnet-network").html(data['data']['payload']);
+                        $("#jamnet-dashboard").html(data['data']['dashboard']);
                     }
                 }
             });

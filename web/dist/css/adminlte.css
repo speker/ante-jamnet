@@ -4804,7 +4804,7 @@ input[type="button"].btn-block {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 1.25rem;
+  padding: 0.50rem;
 }
 
 .card-title {
@@ -4871,7 +4871,7 @@ input[type="button"].btn-block {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1.25rem;
+  padding: 0.50rem;
 }
 
 .card-img,
