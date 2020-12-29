@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+
     <link href="plugins/fontawesome-free/css/font.css" rel="stylesheet">
 <body class="sidebar-mini layout-fixed" style="height: auto;">
 <div class="wrapper">
@@ -111,8 +113,127 @@
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
 <script>
+    function get_dashboard() {
+
+        $.ajax({
+            type: "GET",
+            url: "http://192.168.88.240:8000/api/dashboard",
+            error: function (data) {
+                toastr.error('Veritabanı Bağlantı Hatası')
+            },
+            success: function (data) {
+                if (data['data']['success'] == true) {
+                    $("#jamnet-dashboard").html(data['data']['modules']);
+                }
+            }
+        });
+
+    }
+
     $(function () {
+
+        $(document).on("click", '[id^=module_high_]', function () {
+            clicker = event.target.id.replace("module_high_", "");
+
+            json_data = '{"module":'+clicker+',"p1":0,"p2":0,"power":1}';
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/setmodule",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: json_data,
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success("Modül Gücü High Yapıldı.")
+                        get_dashboard();
+
+
+                    }
+                }
+            });
+        });
+        $(document).on("click", '[id^=module_middle_]', function () {
+            clicker = event.target.id.replace("module_middle_", "");
+
+            json_data = '{"module":'+clicker+',"p1":1,"p2":0,"power":1}';
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/setmodule",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: json_data,
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success("Modül Gücü Middle Yapıldı.")
+                        get_dashboard();
+
+
+                    }
+                }
+            });
+        });
+        $(document).on("click", '[id^=module_low_]', function () {
+            clicker = event.target.id.replace("module_low_", "");
+
+            json_data = '{"module":'+clicker+',"p1":0,"p2":1,"power":1}';
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/setmodule",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: json_data,
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success("Modül Gücü Low Yapıldı.")
+                        get_dashboard();
+
+
+                    }
+                }
+            });
+        });
+
+
+        $(document).on("click", '[id^=clear_alarm_]', function () {
+            clicker = event.target.id.replace("clear_alarm_", "");
+
+            json_data = '{"module":'+clicker+'}';
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.88.240:8000/api/clearerror",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: json_data,
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success("Alarm Silindi")
+                        get_dashboard();
+
+
+                    }
+                }
+            });
+        });
+
+
         $(document).on("click", '[id^=module_off_]', function () {
             clicker = event.target.id.replace("module_off_", "");
             module_state = $('#module_off_' + clicker).val()
@@ -157,22 +278,7 @@
         }
         var timer = setInterval(get_dashboard, 5000);
 
-        function get_dashboard() {
 
-            $.ajax({
-                type: "GET",
-                url: "http://192.168.88.240:8000/api/dashboard",
-                error: function (data) {
-                    toastr.error('Veritabanı Bağlantı Hatası')
-                },
-                success: function (data) {
-                    if (data['data']['success'] == true) {
-                        $("#jamnet-dashboard").html(data['data']['modules']);
-                    }
-                }
-            });
-
-        }
 
 
     });

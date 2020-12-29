@@ -16,7 +16,7 @@ class ClearError(rest.Resource):
         module_addr = data['module']
         try:
             SqLite().set_error_clear(module_addr)
-            return {'data': {'success': 'true'}}
+            return {'data': {'success': True}}
         except Exception as e:
             response = jsonify({'data': {'success': False, 'code': 500, 'message': e}})
             response.status_code = 500
