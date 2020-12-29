@@ -9,7 +9,7 @@ from model.sqlite import SqLite
 
 
 class System(rest.Resource):
-    module_template = '<div class="col-md-3"><div class="card card-success"><div class="card-header"><h3 class="card-title">Modül-|module_id|</h3></div><div class="card-body"><div class="form-group"><label for="module_name-|module_id|">Modül Adı</label><input type="text" class="form-control" id="module_name-|module_id|" value="|module_name|" placeholder="Modül Adı"></div><div class="form-check"><input type="checkbox" class="form-check-input" id="is_active-|module_id|" |is_active|><label class="form-check-label" for="is_active-|module_id|" >Aktif</label></div></div><div class="card-footer"><button type="button" id="save-|module_id|" class="btn btn-success">Kaydet</button></div></div></div>'
+    module_template = '<div class="col-md-3"><div class="card card-success"><div class="card-header"><h3 class="card-title">Modül - |module_id|</h3></div><div class="card-body"><div class="form-group"><label for="module_name-|module_id|">Modül Adı</label><input type="text" class="form-control" id="module_name-|module_id|" value="|module_name|" placeholder="Modül Adı"></div><div class="form-check"><input type="checkbox" class="form-check-input" id="is_active-|module_id|" |is_active|><label class="form-check-label" for="is_active-|module_id|" >Aktif</label></div></div><div class="card-footer"><button type="button" id="save-|module_id|" class="btn btn-success">Kaydet</button></div></div></div>'
 
     def post(self):
         data = rest.request.get_json(silent=True)
