@@ -30,6 +30,13 @@ class System(rest.Resource):
             data = os.system('hostnamectl set-hostname ' + data['hostname'])
             return {'data': {'success': True, "message": "Sistem Adı Değiştirildi"}}
 
+        elif action == "save_module":
+            module_id = data['module_id']
+            module_name = data['module_name']
+            is_active = data['is_active'],
+            SqLite().update_state(module_id, module_name, is_active)
+            return {'data': {'success': True, "message": "Modül Bilgileri Güncellendi"}}
+
     def get(self):
         modules = SqLite().get_states()
         module_data = []

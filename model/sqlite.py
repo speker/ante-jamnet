@@ -64,3 +64,9 @@ class SqLite:
             return False
         else:
             return True
+
+    def update_state(self, module_id, module_name, is_active):
+        self.db.cursor().execute(
+            "UPDATE module_states SET module_name=" + str(module_name) + ", is_active=" + str(
+                is_active) + " where module_addr=" + str(module_id))
+        self.db.commit()
