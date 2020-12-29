@@ -31,7 +31,7 @@ def get_error():
 
 def set_alarm(state):
     # Modules().write_module(15, 0, 0, state)
-    Modules().write_module(11, 0, 0, state)
+    Modules().write_module("led", 0, 0, state)
 
 
 def check_error():

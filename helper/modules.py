@@ -69,11 +69,11 @@ class Modules:
             'p1': {'bridge': 'io_1', 'io': 8},
             'p2': {'bridge': 'io_1', 'io': 7}
         },
-        # 11: {
-        #     'power': {'bridge': 'gpio', 'io': 13},
-        #     'p1': {'bridge': 'io_1', 'io': 6},
-        #     'p2': {'bridge': 'io_1', 'io': 5}
-        # },
+        "led": {
+            'power': {'bridge': 'gpio', 'io': 13},
+            'p1': {'bridge': 'io_1', 'io': 6},
+            'p2': {'bridge': 'io_1', 'io': 5}
+        },
         10: {
             'power': {'bridge': 'gpio', 'io': 19},
             'p1': {'bridge': 'io_1', 'io': 4},
