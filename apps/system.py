@@ -37,6 +37,18 @@ class System(rest.Resource):
             SqLite().update_state(module_id, module_name, is_active)
             return {'data': {'success': True, "message": "Modül Bilgileri Güncellendi"}}
 
+        elif action == "set_pg_db":
+            pg_ip = data['pg_ip']
+            pg_port = data['pg_port']
+            pg_username = data['pg_username']
+            pg_password = data['pg_password']
+
+            SqLite().set_system_value('pg_ip', pg_ip)
+            SqLite().set_system_value('pg_port', pg_port)
+            SqLite().set_system_value('pg_username', pg_username)
+            SqLite().set_system_value('pg_password', pg_password)
+            return {'data': {'success': True, "message": "Veritabanı Bilgileri Güncellendi"}}
+
     def get(self):
         modules = SqLite().get_states()
         module_data = []

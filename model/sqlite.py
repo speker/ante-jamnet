@@ -72,6 +72,11 @@ class SqLite:
         self.db.commit()
 
     def get_system_value(self, system):
-        query = self.db.cursor().execute("SELECT value FROM system where system='" + str(system)+"'")
+        query = self.db.cursor().execute("SELECT value FROM system where system='" + str(system) + "'")
         value = query.fetchone()
         return value[0]
+
+    def set_system_value(self, system, value):
+        self.db.cursor().execute(
+            "UPDATE system SET value=" + str(value) + " where system=" + str(system))
+        self.db.commit()
