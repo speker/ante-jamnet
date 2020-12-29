@@ -35,16 +35,19 @@ class Dashboard(rest.Resource):
                 module_middle = "default"
                 module_low = "default"
                 module_state_level = 100
+                module_progress = "success"
             elif module_calc == "10":
                 module_high = "default"
                 module_middle = "secondary"
                 module_low = "default"
                 module_state_level = 50
+                module_progress = "warning"
             elif module_calc == "01":
                 module_high = "default"
                 module_middle = "default"
                 module_low = "secondary"
                 module_state_level = 25
+                module_progress = "danger"
             if module_power == 1:
                 module_power_state = "Off"
                 module_off = "danger"
@@ -54,7 +57,7 @@ class Dashboard(rest.Resource):
                     module_state = "success"
                 else:
                     module_state = "success"
-                    module_state_level = 50
+                    module_state_level = 0
             else:
                 module_power_state = "On"
                 module_off = "success"
@@ -70,6 +73,7 @@ class Dashboard(rest.Resource):
                 temp = temp.replace("|module_off|", module_off)
                 temp = temp.replace("|module_state|", module_state)
                 temp = temp.replace("|module_state_level|", str(module_state_level))
+                temp = temp.replace("|module_progress|", module_progress)
                 module_data.append(temp)
 
         return {'data': {'success': True, 'modules': ''.join(module_data)}}
