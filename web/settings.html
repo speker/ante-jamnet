@@ -219,27 +219,47 @@
             });
         });
 
-
-
         $('#shutdown').click(function () {
             $.ajax({
                 type: "POST",
                 url: "http://192.168.88.240:8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                data: '{"action":"ss"}',
+                data: '{"action":"shutdown"}',
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
                 success: function (data) {
-                    toastr.success("save İşlem Başarılı")
 
                     if (data['data']['success'] == true) {
-                        toastr.success("save İşlem Başarılı")
+                        toastr.success("İşlem Başarılı")
+                        setTimeout(redirect, 10000);
 
                     }
                 }
             });
+        });
+            $('#save-1').click(function () {
+                toastr.success("save İşlem Başarılı")
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://192.168.88.240:8000/api/system",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    data: '{"action":"fff"}',
+                    error: function (data) {
+                        toastr.error(data['responseJSON']['data']['message'])
+                    },
+                    success: function (data) {
+
+                        if (data['data']['success'] == true) {
+                            toastr.success("save İşlem Başarılı")
+
+                        }
+                    }
+                });
+
         });
 
 
