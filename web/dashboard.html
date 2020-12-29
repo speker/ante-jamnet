@@ -118,7 +118,7 @@
     $(function () {
         $(document).on("click", '[id^=module_off_]', function () {
             clicker = event.target.id.replace("module_off_", "");
-            module_name = $('#module_off_' + clicker).attr('value');
+            module_name = $('#module_off_' + clicker).val()
             alert(module_name)
             // json_data = '{"action":"save_module","module_id":' + clicker + ',"module_name":"' + module_name + '","is_active":' + is_active + '}';
 
