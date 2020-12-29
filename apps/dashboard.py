@@ -22,11 +22,33 @@ class Dashboard(rest.Resource):
             module_power = key[4]
             module_name = key[5]
             module_clear = key[6]
+            module_calc = str(module_p1) + str(module_p2)
+
+
+            module_high = "default"
+            module_middle = "default"
+            module_low = "default"
+
+            if module_calc == "00":
+                module_high = "success"
+                module_middle = "default"
+                module_low = "default"
+            elif module_calc == "10":
+                module_high = "default"
+                module_middle = "warning"
+                module_low = "default"
+            elif module_calc == "01":
+                module_high = "default"
+                module_middle = "default"
+                module_low = "danger"
             module_is_active = key[7]
             if module_is_active == 1:
                 temp = self.module_template
                 temp = temp.replace("|module_id|", str(module_id))
                 temp = temp.replace("|module_name|", module_name)
+                temp = temp.replace("|module_high|", module_high)
+                temp = temp.replace("|module_middle|", module_middle)
+                temp = temp.replace("|module_low|", module_low)
                 module_data.append(temp)
 
-        return {'data': {'success': True,'modules': ''.join(module_data)}}
+        return {'data': {'success': True, 'modules': ''.join(module_data)}}
