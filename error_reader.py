@@ -9,12 +9,10 @@ module_addr = {
     4: {'bridge': 'gpio', 'io': 24, 'state': 0},
     5: {'bridge': 'gpio', 'io': 22, 'state': 0},
     6: {'bridge': 'gpio', 'io': 23, 'state': 0},
-    7: {'bridge': None, 'io': None, 'state': 0},
-    8: {'bridge': 'gpio', 'io': 17, 'state': 0},
-    9: {'bridge': 'gpio', 'io': 18, 'state': 0},
-    10: {'bridge': 'gpio', 'io': 15, 'state': 0},
-    11: {'bridge': None, 'io': None, 'state': 0},
-    12: {'bridge': 'gpio', 'io': 14, 'state': 0},
+    7: {'bridge': 'gpio', 'io': 17, 'state': 0},
+    8: {'bridge': 'gpio', 'io': 18, 'state': 0},
+    9: {'bridge': 'gpio', 'io': 15, 'state': 0},
+    10: {'bridge': 'gpio', 'io': 14, 'state': 0},
 
 }
 
