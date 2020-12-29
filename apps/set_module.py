@@ -34,10 +34,10 @@ class SetModule(rest.Resource):
                 all_module = SqLite().get_states()
                 all_calc = 0
                 for module in all_module:
-                    if module[7] == 1:
+                    if module[7] == 1 and module[0] != 0:
                         all_calc += module[4]
 
-                if all_calc==0:
+                if all_calc == 0:
                     Modules().write_module(0, 0, 0, 0)
             return {'data': {'success': True}}
         except Exception as e:
