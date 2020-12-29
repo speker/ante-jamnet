@@ -43,9 +43,16 @@ class Dashboard(rest.Resource):
             if module_power == 1:
                 module_power_state = "Off"
                 module_off = "danger"
+                if module_error == 1 and module_clear == 0:
+                    module_state = "warning"
+                elif module_error == 1 and module_clear == 1:
+                    module_state = "success"
+                else:
+                    module_state = "success"
             else:
                 module_power_state = "On"
                 module_off = "success"
+                module_state = "danger"
             module_is_active = key[7]
             if module_is_active == 1:
                 temp = self.module_template
@@ -56,6 +63,7 @@ class Dashboard(rest.Resource):
                 temp = temp.replace("|module_low|", module_low)
                 temp = temp.replace("|module_power_state|", module_power_state)
                 temp = temp.replace("|module_off|", module_off)
+                temp = temp.replace("|module_state|", module_state)
                 module_data.append(temp)
 
         return {'data': {'success': True, 'modules': ''.join(module_data)}}
