@@ -186,6 +186,7 @@
 
 
         function redirect() {
+            sessionStorage.removeItem("token");
             window.location.replace("login.html");
         }
 
