@@ -10,7 +10,7 @@
 <div class="card-body" style="display: block;">
 <span><strong>Power</strong></span>
 <div class="progress mb-3">
-<div class="progress-bar bg-|module_progress|" role="progressbar" style="width: |module_state|%">
+<div class="progress-bar bg-|module_progress|" role="progressbar" style="width: |module_state_level|%">
 </div>
 </div>
 <div class="btn-group btn-group-toggle"  data-toggle="buttons">
