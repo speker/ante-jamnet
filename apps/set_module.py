@@ -27,6 +27,8 @@ class SetModule(rest.Resource):
                 return {'data': {'success': True}}
 
             Modules().write_module(module_addr, p1, p2, power)
+            if power == 1:
+                Modules().write_module(0, 0, 0, 1)
             return {'data': {'success': True}}
         except Exception as e:
             response = jsonify({'data': {'success': False, 'code': 500, 'message': e}})
