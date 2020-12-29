@@ -198,7 +198,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/system",
+                url: ":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: json_data,
@@ -234,7 +234,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "http://192.168.88.240:8000/api/system",
+                url: ":8000/api/system",
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
@@ -258,7 +258,7 @@
         $('#set_hostname').click(function () {
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/system",
+                url: ":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: '{"action":"hostname","hostname":"' + $('#system_name').val() + '"}',
@@ -278,7 +278,7 @@
         $('#set_pg_db').click(function () {
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/system",
+                url: ":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: '{"action":"set_pg_db","pg_ip":"' + $('#pg_ip').val() + '","pg_port":"' + $('#pg_port').val() + '","pg_username":"' + $('#pg_username').val() + '","pg_password":"' + $('#pg_password').val() + '"}',
@@ -298,7 +298,7 @@
         $('#restart').click(function () {
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/system",
+                url: ":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: '{"action":"restart"}',
@@ -318,7 +318,7 @@
         $('#shutdown').click(function () {
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/system",
+                url: ":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: '{"action":"shutdown"}',

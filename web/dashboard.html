@@ -119,7 +119,7 @@
 
         $.ajax({
             type: "GET",
-            url: "http://192.168.88.240:8000/api/dashboard",
+            url: ":8000/api/dashboard",
             error: function (data) {
                 toastr.error('Veritabanı Bağlantı Hatası')
             },
@@ -140,7 +140,7 @@
             json_data = '{"module":' + clicker + ',"p1":0,"p2":0,"power":1}';
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/setmodule",
+                url: ":8000/api/setmodule",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: json_data,
@@ -164,7 +164,7 @@
             json_data = '{"module":' + clicker + ',"p1":1,"p2":0,"power":1}';
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/setmodule",
+                url: ":8000/api/setmodule",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: json_data,
@@ -188,7 +188,7 @@
             json_data = '{"module":' + clicker + ',"p1":0,"p2":1,"power":1}';
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/setmodule",
+                url: ":8000/api/setmodule",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: json_data,
@@ -214,7 +214,7 @@
             json_data = '{"module":' + clicker + '}';
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/clearerror",
+                url: ":8000/api/clearerror",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: json_data,
@@ -252,7 +252,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "http://192.168.88.240:8000/api/setmodule",
+                url: ":8000/api/setmodule",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: json_data,
