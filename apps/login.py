@@ -31,7 +31,7 @@ class Login(rest.Resource):
             JWT_SECRET = '7n?P3gjjJqDCbgZrS4QD#hz+a83pLrD3rJwdtWbx-K#%jkYf%B_2n$ha$*bY9CUp'
             JWT_ALGORITHM = 'HS256'
             JWT_EXP_DELTA_SECONDS = 1728000
-            with open('../helper/certs/rsa_private_key.pem', 'rb') as fh:
+            with open('/opt/ante-jamnet/helper/certs/rsa_private_key.pem', 'rb') as fh:
                 signing_key = jwk_from_pem(fh.read())
             payload = {
                 'iss': 'Ante-Jamnet',
