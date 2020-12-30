@@ -41,7 +41,7 @@ class PostGre:
         else:
             update = cur.execute(
                 "UPDATE network SET module_name=%s, module_ip=%s, module_last_beat=%s, module_temp=%s, module_alarm=%s ,module_power=%s where module_serial=%s",
-                (module_name, module_ip, module_last_beat, module_temp, module_alarm,module_power, module_serial,))
+                (module_name, module_ip, module_last_beat, module_temp, module_alarm,module_power, module_serial))
 
     def get_network(self):
         cur = self.db.cursor()
