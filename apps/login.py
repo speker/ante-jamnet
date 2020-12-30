@@ -2,11 +2,12 @@
 import flask_restful as rest
 from flask import jsonify
 from model.postgre import PostGre
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from jwt import (
     JWT,
-    jwk_from_pem
+    jwk_from_dict
 )
+from jwt.utils import get_int_from_datetime
 
 
 class Login(rest.Resource):
@@ -30,11 +31,19 @@ class Login(rest.Resource):
             JWT_SECRET = '7n?P3gjjJqDCbgZrS4QD#hz+a83pLrD3rJwdtWbx-K#%jkYf%B_2n$ha$*bY9CUp'
             JWT_ALGORITHM = 'HS256'
             JWT_EXP_DELTA_SECONDS = 1728000
+            signing_key = jwk_from_dict({
+                'kty': 'RSA',
+                'e': 'AQAB',
+                'n': '7n?P3gjjJqDCbgZrS4QD#hz+a83pLrD3rJwdtWbx-K#%jkYf%B_2n$ha$*bY9CUp',
+                'd': '...'})
             payload = {
+                'iss': 'Ante-Jamnet',
                 'user_name': username,
+                'iat': get_int_from_datetime(datetime.now(timezone.utc)),
                 'user_id': user_id,
-                'exp': datetime.utcnow() + timedelta(seconds=JWT_EXP_DELTA_SECONDS)
+                'exp': get_int_from_datetime(
+                    datetime.now(timezone.utc) + timedelta(hours=240)),
             }
-            jwt_token = instance.encode(payload, JWT_SECRET, JWT_ALGORITHM).decode('utf-8')
+            jwt_token = instance.encode(payload, signing_key, JWT_ALGORITHM).decode('utf-8')
             PostGre().set_user_token(user_id, username, jwt_token)
             return {'data': {'success': True, 'token': jwt_token}}
