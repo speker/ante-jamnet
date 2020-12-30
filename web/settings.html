@@ -194,7 +194,7 @@
             } else {
                 is_active = 0;
             }
-            json_data = '{"action":"save_module","module_id":' + clicker + ',"module_name":"' + module_name + '","is_active":' + is_active + '}';
+            json_data = '{"token":'+token+',"action":"save_module","module_id":' + clicker + ',"module_name":"' + module_name + '","is_active":' + is_active + '}';
 
             $.ajax({
                 type: "POST",
@@ -261,7 +261,7 @@
                 url: "http://"+window.location.hostname+":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                data: '{"action":"hostname","hostname":"' + $('#system_name').val() + '"}',
+                data: '{"token":'+token+',"action":"hostname","hostname":"' + $('#system_name').val() + '"}',
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
@@ -281,7 +281,7 @@
                 url: "http://"+window.location.hostname+":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                data: '{"action":"set_pg_db","pg_ip":"' + $('#pg_ip').val() + '","pg_port":"' + $('#pg_port').val() + '","pg_username":"' + $('#pg_username').val() + '","pg_password":"' + $('#pg_password').val() + '"}',
+                data: '{"token":'+token+',"action":"set_pg_db","pg_ip":"' + $('#pg_ip').val() + '","pg_port":"' + $('#pg_port').val() + '","pg_username":"' + $('#pg_username').val() + '","pg_password":"' + $('#pg_password').val() + '"}',
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
@@ -301,7 +301,7 @@
                 url: "http://"+window.location.hostname+":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                data: '{"action":"restart"}',
+                data: '{"token":'+token+',"action":"restart"}',
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
@@ -321,7 +321,7 @@
                 url: "http://"+window.location.hostname+":8000/api/system",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                data: '{"action":"shutdown"}',
+                data: '{"token":'+token+',"action":"shutdown"}',
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },

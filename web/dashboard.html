@@ -126,7 +126,6 @@
             success: function (data) {
                 if (data['data']['success'] == true) {
                     $("#jamnet-dashboard").html(data['data']['modules']);
-                    alert(token)
                 }
             }
         });
@@ -138,7 +137,7 @@
         $(document).on("click", '[id^=module_high_]', function () {
             clicker = this.id.replace("module_high_", "");
 
-            json_data = '{"module":' + clicker + ',"p1":0,"p2":0,"power":1}';
+            json_data = '{"token":'+token+',"module":' + clicker + ',"p1":0,"p2":0,"power":1}';
             $.ajax({
                 type: "POST",
                 url: "http://"+window.location.hostname+":8000/api/setmodule",
@@ -162,7 +161,7 @@
         $(document).on("click", '[id^=module_middle_]', function () {
             clicker = this.id.replace("module_middle_", "");
 
-            json_data = '{"module":' + clicker + ',"p1":1,"p2":0,"power":1}';
+            json_data = '{"token":'+token+',"module":' + clicker + ',"p1":1,"p2":0,"power":1}';
             $.ajax({
                 type: "POST",
                 url: "http://"+window.location.hostname+":8000/api/setmodule",
@@ -186,7 +185,7 @@
         $(document).on("click", '[id^=module_low_]', function () {
             clicker = this.id.replace("module_low_", "");
 
-            json_data = '{"module":' + clicker + ',"p1":0,"p2":1,"power":1}';
+            json_data = '{"token":'+token+',"module":' + clicker + ',"p1":0,"p2":1,"power":1}';
             $.ajax({
                 type: "POST",
                 url: "http://"+window.location.hostname+":8000/api/setmodule",
@@ -212,7 +211,7 @@
         $(document).on("click", '[id^=clear_alarm_]', function () {
 
             clicker = this.id.replace("clear_alarm_", "");
-            json_data = '{"module":' + clicker + '}';
+            json_data = '{"token":'+token+',"module":' + clicker + '}';
             $.ajax({
                 type: "POST",
                 url: "http://"+window.location.hostname+":8000/api/clearerror",
@@ -249,7 +248,7 @@
                 toast_message="Modül Gücü Açıldı."
 
             }
-            json_data = '{"module":' + clicker + ',"p1":' + p1_val + ',"p2":' + p2_val + ',"power":' + power_val + '}';
+            json_data = '{"token":'+token+',"module":' + clicker + ',"p1":' + p1_val + ',"p2":' + p2_val + ',"power":' + power_val + '}';
 
             $.ajax({
                 type: "POST",
