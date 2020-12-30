@@ -42,9 +42,9 @@ def check_error():
         clear = key[2]
         if error == 1 and clear == 0:
             alarm = 1
-            Logger().set_alarm(module, 'alarm_start')
-        if error == 0:
-            Logger().set_alarm(module, 'alarm_stop')
+        #     Logger().set_alarm(module, 'alarm_start')
+        # if error == 0:
+        #     Logger().set_alarm(module, 'alarm_stop')
     return alarm
 
 
