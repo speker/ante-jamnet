@@ -29,7 +29,7 @@ class Logger:
 
         module_ip = check_output(['hostname', '--all-ip-addresses']).decode("utf-8").strip()
         system_name = check_output(['hostname']).decode("utf-8").strip()
-        PostGre().set_log(self.get_serial(), system_name, username, user_ip, log_date, action,
+        PostGre().set_user_log(self.get_serial(), system_name, username, user_ip, log_date, action,
                           json.dumps(action_detail), module_ip)
 
     @staticmethod
@@ -44,3 +44,7 @@ class Logger:
         except:
             cpu_serial = "ERROR000000000"
         return cpu_serial
+
+
+    def set_alarm(self,module_name,action):
+        print()

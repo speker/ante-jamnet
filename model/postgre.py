@@ -49,8 +49,15 @@ class PostGre:
         rows = cur.fetchall()
         return rows
 
-    def set_log(self, system_serial, system_name, username, user_ip, log_date, log_action, action_detail,system_ip):
+    def set_user_log(self, system_serial, system_name, username, user_ip, log_date, log_action, action_detail,
+                     system_ip):
         cur = self.db.cursor()
         insert = cur.execute(
-            "INSERT INTO logs (system_serial,system_name,username,user_ip,log_date,log_action,action_detail,system_ip) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
-            (system_serial, system_name, username, user_ip, log_date, log_action, action_detail,system_ip))
+            "INSERT INTO user_logs (system_serial,system_name,username,user_ip,log_date,log_action,action_detail,system_ip) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
+            (system_serial, system_name, username, user_ip, log_date, log_action, action_detail, system_ip))
+
+    def set_alarm_log(self, system_serial, system_name, log_date, log_action, module_name):
+        cur = self.db.cursor()
+        insert = cur.execute(
+            "INSERT INTO alarm_logs (system_serial,system_name,log_date,log_action,module_name) VALUES (%s,%s,%s,%s,%s,%s)",
+            (system_serial, system_name, log_date, log_action, module_name))
