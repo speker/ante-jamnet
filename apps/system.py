@@ -105,7 +105,7 @@ class System(rest.Resource):
     @staticmethod
     def reboot():
         time.sleep(5)
-        # os.system('sudo shutdown -r now')
+        os.system('sudo shutdown -r now')
 
     @staticmethod
     def shutdown():
