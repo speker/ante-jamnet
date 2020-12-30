@@ -8,7 +8,7 @@ class ClearError(rest.Resource):
 
     @staticmethod
     def post():
-        Logger().set_request(request)
+        Logger().set_request(request,'clear_error')
         data = rest.request.get_json(silent=True)
         if data is None or data['module'] is None:
             response = jsonify({'data': {'success': False, 'code': 403, 'message': 'bad module name'}})
