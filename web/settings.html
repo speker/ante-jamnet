@@ -327,8 +327,8 @@
 
                     if (data['data']['success'] == true) {
                         toastr.success(data['data']['message'])
-                        setTimeout(redirect_uri(data['data']['uri']), 15000);
-
+                        sleep(15000);
+                        redirect_uri(data['data']['uri']);
 
                     }
                 }
