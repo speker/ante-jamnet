@@ -65,6 +65,8 @@ class System(rest.Resource):
                           "static domain_name_servers=8.8.8.8"
                 ip_temp = ip_temp.replace("|eth_ip|", str(eth_ip))
                 ip_temp = ip_temp.replace("|eth_gateway|", str(eth_gateway))
+                SqLite().set_system_value('eth_ip', eth_ip)
+                SqLite().set_system_value('eth_gateway', eth_gateway)
 
                 f = open("/etc/dhcpcd.conf", "w")
                 f.write(ip_temp)
