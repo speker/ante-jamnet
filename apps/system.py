@@ -69,7 +69,9 @@ class System(rest.Resource):
                 f = open("/etc/dhcpcd.conf", "w")
                 f.write(ip_temp)
                 f.close()
-                return {'data': {'success': True, "message": "Ip Adresi Güncellendi",
+                work = Thread(target=self.reboot)
+                work.start()
+                return {'data': {'success': True, "message": "Ip Adresi Güncellendi. Sistem yeniden başlatılıyor",
                                  'uri': 'http://' + eth_ip.split('/')[0] + '/settings.html'}}
 
             else:
