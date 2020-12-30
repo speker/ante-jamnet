@@ -66,5 +66,5 @@ class PostGre:
     def set_alarm_log(self, system_serial, system_name, log_date, log_action, module_name):
         cur = self.db.cursor()
         insert = cur.execute(
-            "INSERT INTO alarm_logs (system_serial,system_name,log_date,log_action,module_name) VALUES (%s,%s,%s,%s,%s,%s)",
+            "INSERT INTO alarm_logs (system_name,log_date,log_action,module_name) VALUES (%s,%s,%s,%s,%s,%s)",
             (system_serial, system_name, log_date, log_action, module_name))
