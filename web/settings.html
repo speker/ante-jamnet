@@ -262,6 +262,10 @@
             window.location.replace("login.html");
         }
 
+        function redirect_uri(uri) {
+            window.location.replace(uri);
+        }
+
         function get_settings() {
 
             $.ajax({
@@ -323,6 +327,8 @@
 
                     if (data['data']['success'] == true) {
                         toastr.success(data['data']['message'])
+                        setTimeout(redirect_uri(data['data']['uri']), 2000);
+
 
                     }
                 }

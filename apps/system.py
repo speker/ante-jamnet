@@ -69,7 +69,8 @@ class System(rest.Resource):
                 f = open("/etc/dhcpcd.conf", "w")
                 f.write(ip_temp)
                 f.close()
-                return {'data': {'success': True, "message": "Ip Adresi Güncellendi"}}
+                return {'data': {'success': True, "message": "Ip Adresi Güncellendi",
+                                 'uri': 'http://' + eth_ip.split('/')[0] + '/settings.html'}}
 
             else:
                 response = jsonify({'data': {'success': False, 'code': 403, 'message': 'Hatalı Adres Bilgisi'}})
