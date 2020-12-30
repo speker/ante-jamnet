@@ -34,7 +34,7 @@ class Network(rest.Resource):
                     else:
                         net_state = "warning"
                 if module_power == 0:
-                    net_state = "success"
+                    net_state = "danger"
                 temp = self.template
                 temp = temp.replace("|module_name|", module_name)
                 temp = temp.replace("|module_ip|", module_ip)
@@ -44,3 +44,5 @@ class Network(rest.Resource):
                 temp = temp.replace("|net_state|", net_state)
                 net_data.append(temp)
             return {'data': {'success': True, 'payload': ''.join(net_data)}}
+
+Network().get()
