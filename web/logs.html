@@ -119,7 +119,7 @@
                                 <th>Sistem Ip</th>
                             </tr>
                             </thead>
-                            <tbody id="user_logs">
+                            <tbody id="user_logs_data">
 
                             </tbody>
 
@@ -159,13 +159,12 @@
 
         token = sessionStorage.getItem('token')
         if (token == null) {
-            // window.location.replace("login.html");
-            // return null;
+            window.location.replace("login.html");
+            return null;
         } else {
           get_logs();
 
         }
-        $('#user_logs').DataTable();
 
         function get_logs() {
 
@@ -177,7 +176,9 @@
                 },
                 success: function (data) {
                     if (data['data']['success'] == true) {
-                        $("#user_logs").html(data['data']['payload']);
+                        $("#user_logs_data").html(data['data']['payload']);
+                        $('#user_logs').DataTable();
+
                     }
                 }
             });
