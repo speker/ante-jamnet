@@ -23,6 +23,7 @@ class Network(rest.Resource):
                 module_last_beat = str(key[4])[0:19]
                 module_temp = str(key[5])[0:4]
                 module_alarm = key[6]
+                module_power = key[7]
                 offline_dif = key[4] + datetime.timedelta(0, 300)
                 now = datetime.datetime.now()
                 if offline_dif < now:
@@ -32,6 +33,8 @@ class Network(rest.Resource):
                         net_state = "success"
                     else:
                         net_state = "warning"
+                if module_power == 0:
+                    net_state = "success"
                 temp = self.template
                 temp = temp.replace("|module_name|", module_name)
                 temp = temp.replace("|module_ip|", module_ip)

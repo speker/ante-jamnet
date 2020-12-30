@@ -26,7 +26,8 @@ def send_beat():
     module_serial = get_serial()
     module_temp = str(GetTemp().read_temp())
     module_alarm = SqLite().get_error_state()
-    PostGre().set_beat(module_name, module_serial, module_ip, module_last_beat, module_temp, module_alarm)
+    module_power = SqLite().get_state(0)[4]
+    PostGre().set_beat(module_name, module_serial, module_ip, module_last_beat, module_temp, module_alarm,module_power)
 
 
 if __name__ == "__main__":
