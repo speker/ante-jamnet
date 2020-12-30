@@ -5,7 +5,7 @@ from model.postgre import PostGre
 from datetime import datetime, timedelta, timezone
 from jwt import (
     JWT,
-    jwk_from_dict
+    jwk_from_pem
 )
 from jwt.utils import get_int_from_datetime
 
@@ -31,11 +31,8 @@ class Login(rest.Resource):
             JWT_SECRET = '7n?P3gjjJqDCbgZrS4QD#hz+a83pLrD3rJwdtWbx-K#%jkYf%B_2n$ha$*bY9CUp'
             JWT_ALGORITHM = 'HS256'
             JWT_EXP_DELTA_SECONDS = 1728000
-            signing_key = jwk_from_dict({
-                'kty': 'RSA',
-                'e': 'AQAB',
-                'n': '7n?P3gjjJqDCbgZrS4QD#hz+a83pLrD3rJwdtWbx-K#%jkYf%B_2n$ha$*bY9CUp',
-                'd': '...'})
+            with open('../helper/certs/rsa_private_key.pem', 'rb') as fh:
+                signing_key = jwk_from_pem(fh.read())
             payload = {
                 'iss': 'Ante-Jamnet',
                 'user_name': username,
