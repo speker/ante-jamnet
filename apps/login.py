@@ -28,9 +28,7 @@ class Login(rest.Resource):
         else:
             instance = JWT()
             user_id = user[0][0]
-            JWT_SECRET = '7n?P3gjjJqDCbgZrS4QD#hz+a83pLrD3rJwdtWbx-K#%jkYf%B_2n$ha$*bY9CUp'
             JWT_ALGORITHM = 'RS512'
-            JWT_EXP_DELTA_SECONDS = 1728000
             with open('/opt/ante-jamnet/helper/certs/rsa_private_key.pem', 'rb') as fh:
                 signing_key = jwk_from_pem(fh.read())
             payload = {

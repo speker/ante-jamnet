@@ -2,15 +2,17 @@
 import time
 
 import flask_restful as rest
-from flask import jsonify
+from flask import jsonify, request
 from helper.modules import Modules
 from threading import Thread
 from model.sqlite import SqLite
+from helper.logger import Logger
 
 
 class Power(rest.Resource):
 
     def post(self):
+        Logger().set_request(request, 'power')
         data = rest.request.get_json(silent=True)
         if data is None or data['power'] is None or data['modules'] is None:
             response = jsonify({'data': {'success': False, 'code': 403, 'message': 'bad module name'}})

@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 import flask_restful as rest
-from flask import jsonify
+from flask import jsonify, request
 from helper.modules import Modules
 from model.sqlite import SqLite
 import time
+from helper.logger import Logger
 
 
 class SetModule(rest.Resource):
 
     @staticmethod
     def post():
+        Logger().set_request(request, 'set_module')
         data = rest.request.get_json(silent=True)
         if data is None or data['module'] is None:
             response = jsonify({'data': {'success': False, 'code': 403, 'message': 'bad module name'}})
