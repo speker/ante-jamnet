@@ -50,31 +50,57 @@ class System(rest.Resource):
             SqLite().set_system_value('pg_username', pg_username)
             SqLite().set_system_value('pg_password', pg_password)
             return {'data': {'success': True, "message": "Veritabanı Bilgileri Güncellendi"}}
+        elif action == "set_ip":
+            if 'eth_ip' in data and 'eth_gateway' in data:
+                eth_ip=data['eth_ip']
+                eth_gateway=data['eth_gateway']
+                ip_temp="interface eth0 \n" \
+                        "static ip_address=|eth_ip|\n" \
+                        "static routers=|eth_gateway|\n" \
+                        "static domain_name_servers=8.8.8.8\n" \
+                        "\n" \
+                        "interface wlan0\n" \
+                        "static ip_address=192.168.88.240/24\n" \
+                        "static routers=192.168.88.1\n" \
+                        "static domain_name_servers=8.8.8.8"
+                ip_temp = ip_temp.replace("|eth_ip|", str(eth_ip))
+                ip_temp = ip_temp.replace("|eth_gateway|", str(eth_gateway))
+
+                f = open("/etc/dhcpcd.conf", "w")
+                f.write(ip_temp)
+                f.close()
+                return {'data': {'success': True, "message": "Ip Adresi Güncellendi"}}
+
+            else :
+                response = jsonify({'data': {'success': False, 'code': 403, 'message': 'Hatalı Adres Bilgisi'}})
+                response.status_code = 403
+
+
 
     def get(self):
-        modules = SqLite().get_states()
-        module_data = []
-        for key in modules:
-            module_id = key[0]
-            module_name = key[5]
-            module_is_active = key[7]
-            if module_is_active == 1:
-                is_active = "checked"
-            else:
-                is_active = ""
-            temp = self.module_template
-            temp = temp.replace("|module_id|", str(module_id))
-            temp = temp.replace("|module_name|", module_name)
-            temp = temp.replace("|is_active|", is_active)
-            module_data.append(temp)
-        pg_ip = SqLite().get_system_value('pg_ip')
-        pg_port = SqLite().get_system_value('pg_port')
-        pg_username = SqLite().get_system_value('pg_username')
-        pg_password = SqLite().get_system_value('pg_password')
-        return {'data': {'success': True, 'hostname': check_output(['hostname']).decode("utf-8").strip(),
-                         'modules': ''.join(module_data),
-                         'pg_db': {'pg_ip': pg_ip, 'pg_port': pg_port, 'pg_username': pg_username,
-                                   'pg_password': pg_password}}}
+            modules = SqLite().get_states()
+            module_data = []
+            for key in modules:
+                module_id = key[0]
+                module_name = key[5]
+                module_is_active = key[7]
+                if module_is_active == 1:
+                    is_active = "checked"
+                else:
+                    is_active = ""
+                temp = self.module_template
+                temp = temp.replace("|module_id|", str(module_id))
+                temp = temp.replace("|module_name|", module_name)
+                temp = temp.replace("|is_active|", is_active)
+                module_data.append(temp)
+            pg_ip = SqLite().get_system_value('pg_ip')
+            pg_port = SqLite().get_system_value('pg_port')
+            pg_username = SqLite().get_system_value('pg_username')
+            pg_password = SqLite().get_system_value('pg_password')
+            return {'data': {'success': True, 'hostname': check_output(['hostname']).decode("utf-8").strip(),
+                             'modules': ''.join(module_data),
+                             'pg_db': {'pg_ip': pg_ip, 'pg_port': pg_port, 'pg_username': pg_username,
+                                       'pg_password': pg_password}}}
 
     @staticmethod
     def reboot():
