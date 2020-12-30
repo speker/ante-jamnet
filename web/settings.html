@@ -168,7 +168,7 @@
                         <div class="form-group row">
                             <label for="pg_port" class="col-sm-4 col-form-label">Gateway</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="eth_gateway" placeholder="Port">
+                                <input type="text" class="form-control" id="eth_gateway" placeholder="Gateway">
                             </div>
                         </div>
                     </div>
@@ -278,8 +278,8 @@
                         $("#pg_username").val(data['data']['pg_db']['pg_username']);
                         $("#pg_password").val(data['data']['pg_db']['pg_password']);
                         $("#jamnet-modules").html(data['data']['modules']);
-                        $("#eth_ip").html(data['data']['eth_ip']);
-                        $("#eth_gateway").html(data['data']['eth_gateway']);
+                        $("#eth_ip").val(data['data']['eth_ip']);
+                        $("#eth_gateway").val(data['data']['eth_gateway']);
                         $("btn btn-success").on("click", "p.test", function () {
                             save_module();
                         });
