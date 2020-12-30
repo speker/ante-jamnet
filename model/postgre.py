@@ -48,3 +48,9 @@ class PostGre:
         cur.execute("SELECT * from network order by module_name asc ")
         rows = cur.fetchall()
         return rows
+
+    def set_log(self, system_serial, system_name, username, user_ip, date, action, action_detail):
+        cur = self.db.cursor()
+        insert = cur.execute(
+            "INSERT INTO logs (system_serial,system_name,username,user_ip,date,action,action_detail) VALUES (%s,%s,%s,%s,%s,%s,%s)",
+            (system_serial, system_name, username, user_ip, date, action, action_detail))

@@ -3,7 +3,10 @@ import flask_restful as rest
 from flask import jsonify
 from model.postgre import PostGre
 from datetime import datetime, timedelta
-import jwt
+from jwt import (
+    JWT,
+    jwk_from_pem
+)
 
 
 class Login(rest.Resource):
@@ -22,6 +25,7 @@ class Login(rest.Resource):
             response.status_code = 401
             return response
         else:
+            instance = JWT()
             user_id = user[0][0]
             JWT_SECRET = '7n?P3gjjJqDCbgZrS4QD#hz+a83pLrD3rJwdtWbx-K#%jkYf%B_2n$ha$*bY9CUp'
             JWT_ALGORITHM = 'HS256'
@@ -31,6 +35,6 @@ class Login(rest.Resource):
                 'user_id': user_id,
                 'exp': datetime.utcnow() + timedelta(seconds=JWT_EXP_DELTA_SECONDS)
             }
-            jwt_token = jwt.encode(payload, JWT_SECRET, JWT_ALGORITHM).decode('utf-8')
+            jwt_token = instance.encode(payload, JWT_SECRET, JWT_ALGORITHM).decode('utf-8')
             PostGre().set_user_token(user_id, username, jwt_token)
             return {'data': {'success': True, 'token': jwt_token}}

@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 import flask_restful as rest
-from flask import jsonify
+from flask import jsonify, request
 import os
 import time
 from threading import Thread
 from subprocess import check_output
 from model.sqlite import SqLite
+from helper.logger import Logger
 
 
 class System(rest.Resource):
     module_template = '<div class="col-md-3"><div class="card card-success"><div class="card-header"><h3 class="card-title">Modül - |module_id|</h3></div><div class="card-body"><div class="form-group"><label for="module_name_|module_id|">Modül Adı</label><input type="text" class="form-control" id="module_name_|module_id|" value="|module_name|" placeholder="Modül Adı"></div><div class="form-check"><input type="checkbox" class="form-check-input" id="is_active_|module_id|" |is_active|><label class="form-check-label" for="is_active_|module_id|" >Aktif</label></div></div><div class="card-footer"><button type="button" id="save_|module_id|" class="btn btn-success">Kaydet</button></div></div></div>'
 
     def post(self):
+        Logger().set_request(request)
         data = rest.request.get_json(silent=True)
         if data is None or data['action'] is None:
             response = jsonify({'data': {'success': False, 'code': 403, 'message': 'bad module name'}})
@@ -50,6 +52,8 @@ class System(rest.Resource):
             return {'data': {'success': True, "message": "Veritabanı Bilgileri Güncellendi"}}
 
     def get(self):
+        Logger().set_request(request)
+
         modules = SqLite().get_states()
         module_data = []
         for key in modules:
@@ -77,7 +81,7 @@ class System(rest.Resource):
     @staticmethod
     def reboot():
         time.sleep(5)
-        os.system('sudo shutdown -r now')
+        # os.system('sudo shutdown -r now')
 
     @staticmethod
     def shutdown():
