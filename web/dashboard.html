@@ -126,6 +126,7 @@
             success: function (data) {
                 if (data['data']['success'] == true) {
                     $("#jamnet-dashboard").html(data['data']['modules']);
+                    alert(token)
                 }
             }
         });
@@ -272,11 +273,6 @@
         });
     });
     $(document).ready(function () {
-
-
-
-
-
         token = sessionStorage.getItem('token')
         if (token == null) {
             window.location.replace("login.html");
