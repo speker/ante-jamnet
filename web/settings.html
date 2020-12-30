@@ -152,6 +152,32 @@
                     </div>
             </div>
             </div>
+            <div class="col-md-4 card-body">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Ip Ayarları</h3>
+                </div>
+
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="pg_ip" class="col-sm-4 col-form-label">Ip</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="eth_ip" placeholder="Ip">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pg_port" class="col-sm-4 col-form-label">Gateway</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" id="eth_gateway" placeholder="Port">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="button" id="set_ip" class="btn btn-info float-right">Kaydet</button>
+                    </div>
+            </div>
+            </div>
 
 
             <div class="row" id="jamnet-modules">
@@ -252,6 +278,8 @@
                         $("#pg_username").val(data['data']['pg_db']['pg_username']);
                         $("#pg_password").val(data['data']['pg_db']['pg_password']);
                         $("#jamnet-modules").html(data['data']['modules']);
+                        $("#eth_ip").html(data['data']['eth_ip']);
+                        $("#eth_gateway").html(data['data']['eth_gateway']);
                         $("btn btn-success").on("click", "p.test", function () {
                             save_module();
                         });
@@ -268,6 +296,26 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: '{"token":"'+token+'","action":"hostname","hostname":"' + $('#system_name').val() + '"}',
+                error: function (data) {
+                    toastr.error(data['responseJSON']['data']['message'])
+                },
+                success: function (data) {
+
+                    if (data['data']['success'] == true) {
+                        toastr.success(data['data']['message'])
+
+                    }
+                }
+            });
+        });
+
+        $('#set_ip').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://"+window.location.hostname+":8000/api/system",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: '{"token":"'+token+'","action":"set_ip","eth_ip":"' + $('#eth_ip').val() + '","eth_gateway":"' + $('#eth_gateway').val() + '"}',
                 error: function (data) {
                     toastr.error(data['responseJSON']['data']['message'])
                 },
