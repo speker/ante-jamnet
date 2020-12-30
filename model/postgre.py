@@ -49,6 +49,13 @@ class PostGre:
         rows = cur.fetchall()
         return rows
 
+
+    def get_user_log(self):
+        cur = self.db.cursor()
+        cur.execute("SELECT system_serial, system_name, username, user_ip, log_date, log_action, action_detail, system_ip from user_logs order by log_date desc ")
+        rows = cur.fetchall()
+        return rows
+
     def set_user_log(self, system_serial, system_name, username, user_ip, log_date, log_action, action_detail,
                      system_ip):
         cur = self.db.cursor()
