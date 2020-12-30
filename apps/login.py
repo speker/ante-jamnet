@@ -41,6 +41,6 @@ class Login(rest.Resource):
                 'exp': get_int_from_datetime(
                     datetime.now(timezone.utc) + timedelta(hours=240)),
             }
-            jwt_token = instance.encode(payload, signing_key, JWT_ALGORITHM).decode('utf-8')
+            jwt_token = instance.encode(payload, signing_key, JWT_ALGORITHM)
             PostGre().set_user_token(user_id, username, jwt_token)
             return {'data': {'success': True, 'token': jwt_token}}
