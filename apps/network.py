@@ -44,5 +44,3 @@ class Network(rest.Resource):
                 temp = temp.replace("|net_state|", net_state)
                 net_data.append(temp)
             return {'data': {'success': True, 'payload': ''.join(net_data)}}
-
-Network().get()

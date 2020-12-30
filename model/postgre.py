@@ -29,19 +29,20 @@ class PostGre:
         update = cur.execute("UPDATE users SET token=%s where username=%s and user_id=%s", (token, username, user_id))
         return update
 
-    def set_beat(self, module_name, module_serial, module_ip, module_last_beat, module_temp, module_alarm,module_power):
+    def set_beat(self, module_name, module_serial, module_ip, module_last_beat, module_temp, module_alarm,
+                 module_power):
         cur = self.db.cursor()
         cur.execute("SELECT * from network where module_serial=%s", (module_serial,))
         rows = cur.fetchone()
         if rows is None:
             insert = cur.execute(
                 "INSERT INTO network (module_name,module_ip,module_serial,module_last_beat,module_temp,module_alarm,module_power) VALUES (%s,%s,%s,%s,%s,%s,%s)",
-                (module_name, module_ip, module_serial, module_last_beat, module_temp, module_alarm,module_power
+                (module_name, module_ip, module_serial, module_last_beat, module_temp, module_alarm, module_power
                  ))
         else:
             update = cur.execute(
-                "UPDATE network SET module_name=%s, module_ip=%s, module_last_beat=%s, module_temp=%s, module_alarm=%s ,module_power=%s where module_serial=%s",
-                (module_name, module_ip, module_last_beat, module_temp, module_alarm,module_power, module_serial))
+                "UPDATE network SET module_name=%s, module_ip=%s, module_last_beat=%s, module_temp=%s, module_alarm=%s, module_power=%s where module_serial=%s",
+                (module_name, module_ip, module_last_beat, module_temp, module_alarm, module_power, module_serial,))
 
     def get_network(self):
         cur = self.db.cursor()
@@ -49,10 +50,10 @@ class PostGre:
         rows = cur.fetchall()
         return rows
 
-
     def get_user_log(self):
         cur = self.db.cursor()
-        cur.execute("SELECT system_serial, system_name, username, user_ip, log_date, log_action, action_detail, system_ip from user_logs order by log_date desc ")
+        cur.execute(
+            "SELECT system_serial, system_name, username, user_ip, log_date, log_action, action_detail, system_ip from user_logs order by log_date desc ")
         rows = cur.fetchall()
         return rows
 
