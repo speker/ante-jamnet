@@ -29,8 +29,11 @@ class Logger:
 
         module_ip = check_output(['hostname', '--all-ip-addresses']).decode("utf-8").strip()
         system_name = check_output(['hostname']).decode("utf-8").strip()
-        PostGre().set_user_log(self.get_serial(), system_name, username, user_ip, log_date, action,
-                               json.dumps(action_detail), module_ip)
+        try:
+            PostGre().set_user_log(self.get_serial(), system_name, username, user_ip, log_date, action,
+                                   json.dumps(action_detail), module_ip)
+        except Exception as e:
+            print(e)
 
     @staticmethod
     def get_serial():

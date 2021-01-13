@@ -44,5 +44,8 @@ class Login(rest.Resource):
                     datetime.now(timezone.utc) + timedelta(hours=240)),
             }
             jwt_token = instance.encode(payload, signing_key, JWT_ALGORITHM)
-            PostGre().set_user_token(user_id, username, jwt_token)
+            try:
+                PostGre().set_user_token(user_id, username, jwt_token)
+            except Exception as e:
+                print(e)
             return {'data': {'success': True, 'token': jwt_token}}
