@@ -7,28 +7,21 @@ class PostGre:
 
     def __init__(self):
         if self.db is None:
-            try:
-                pg_ip = SqLite().get_system_value('pg_ip')
-                pg_port = SqLite().get_system_value('pg_port')
-                pg_username = SqLite().get_system_value('pg_username')
-                pg_password = SqLite().get_system_value('pg_password')
-                self.db = psycopg2.connect(database="jamnet",
-                                           user=pg_username,
-                                           password=pg_password,
-                                           host=pg_ip,
-                                           port=pg_port)
-                self.db.autocommit = True
-            except:
-                pass
+            pg_ip = SqLite().get_system_value('pg_ip')
+            pg_port = SqLite().get_system_value('pg_port')
+            pg_username = SqLite().get_system_value('pg_username')
+            pg_password = SqLite().get_system_value('pg_password')
+            self.db = psycopg2.connect(database="jamnet",
+                                       user=pg_username,
+                                       password=pg_password,
+                                       host=pg_ip,
+                                       port=pg_port)
+            self.db.autocommit = True
 
     def check_user(self, username, password):
-        try:
-            cur = self.db.cursor()
-            cur.execute("SELECT * from users where username=%s and password=%s", (username, password))
-            rows = cur.fetchall()
-        except:
-            if username == '12345' and password == '54321':
-                rows = ['1']
+        cur = self.db.cursor()
+        cur.execute("SELECT * from users where username=%s and password=%s", (username, password))
+        rows = cur.fetchall()
         return rows
 
     def set_user_token(self, user_id, username, token):
