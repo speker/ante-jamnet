@@ -24,7 +24,7 @@ class Login(rest.Resource):
         if username != '!admin!' and password != '!admin!':
             user = PostGre().check_user(username, password)
         else:
-            user = ['!admin!']
+            user = ['1']
         if len(user) == 0:
             response = jsonify({'data': {'success': False, 'code': 401, 'message': 'Kullanıcı Adı veya Şifre Hatalı'}})
             response.status_code = 401
@@ -44,8 +44,8 @@ class Login(rest.Resource):
                     datetime.now(timezone.utc) + timedelta(hours=240)),
             }
             jwt_token = instance.encode(payload, signing_key, JWT_ALGORITHM)
-            if user[0] == '!admin!':
-                return {'data': {'success': True, 'token': jwt_token}}
-            else:
+            try:
                 PostGre().set_user_token(user_id, username, jwt_token)
-                return {'data': {'success': True, 'token': jwt_token}}
+            except Exception as e:
+                print(e)
+            return {'data': {'success': True, 'token': jwt_token}}
