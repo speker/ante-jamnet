@@ -38,7 +38,6 @@ class SetModule(rest.Resource):
                 for module in all_module:
                     if module[7] == 1 and module[0] != 0:
                         all_calc += module[4]
-
                 if all_calc == 0:
                     Modules().write_module(0, 0, 0, 0)
             return {'data': {'success': True}}
