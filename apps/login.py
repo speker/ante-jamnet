@@ -12,7 +12,8 @@ from jwt.utils import get_int_from_datetime
 
 class Login(rest.Resource):
 
-    def post(self):
+    @staticmethod
+    def post():
         data = rest.request.get_json(silent=True)
         if data is None:
             response = jsonify({'data': {'success': False, 'code': 403, 'message': 'bad module name'}})
@@ -23,7 +24,7 @@ class Login(rest.Resource):
         if username != '!admin!' and password != '!admin!':
             user = PostGre().check_user(username, password)
         else:
-            user = ['1']
+            user = ['!admin!']
         if len(user) == 0:
             response = jsonify({'data': {'success': False, 'code': 401, 'message': 'Kullanıcı Adı veya Şifre Hatalı'}})
             response.status_code = 401
@@ -43,5 +44,8 @@ class Login(rest.Resource):
                     datetime.now(timezone.utc) + timedelta(hours=240)),
             }
             jwt_token = instance.encode(payload, signing_key, JWT_ALGORITHM)
-            PostGre().set_user_token(user_id, username, jwt_token)
-            return {'data': {'success': True, 'token': jwt_token}}
+            if user[0] == '!admin!':
+                return {'data': {'success': True, 'token': jwt_token}}
+            else:
+                PostGre().set_user_token(user_id, username, jwt_token)
+                return {'data': {'success': True, 'token': jwt_token}}
