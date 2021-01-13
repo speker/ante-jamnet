@@ -7,16 +7,19 @@ class PostGre:
 
     def __init__(self):
         if self.db is None:
-            pg_ip = SqLite().get_system_value('pg_ip')
-            pg_port = SqLite().get_system_value('pg_port')
-            pg_username = SqLite().get_system_value('pg_username')
-            pg_password = SqLite().get_system_value('pg_password')
-            self.db = psycopg2.connect(database="jamnet",
-                                       user=pg_username,
-                                       password=pg_password,
-                                       host=pg_ip,
-                                       port=pg_port)
-            self.db.autocommit = True
+            try:
+                pg_ip = SqLite().get_system_value('pg_ip')
+                pg_port = SqLite().get_system_value('pg_port')
+                pg_username = SqLite().get_system_value('pg_username')
+                pg_password = SqLite().get_system_value('pg_password')
+                self.db = psycopg2.connect(database="jamnet",
+                                           user=pg_username,
+                                           password=pg_password,
+                                           host=pg_ip,
+                                           port=pg_port)
+                self.db.autocommit = True
+            except:
+                pass
 
     def check_user(self, username, password):
         try:
