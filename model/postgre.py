@@ -15,7 +15,8 @@ class PostGre:
                                        user=pg_username,
                                        password=pg_password,
                                        host=pg_ip,
-                                       port=pg_port)
+                                       port=pg_port,
+                                       connect_timeout=10)
             self.db.autocommit = True
 
     def check_user(self, username, password):
