@@ -7,6 +7,7 @@ from threading import Thread
 from subprocess import check_output
 from model.sqlite import SqLite
 from helper.logger import Logger
+from helper.modules import Modules
 
 
 class System(rest.Resource):
@@ -36,6 +37,8 @@ class System(rest.Resource):
             module_id = data['module_id']
             module_name = data['module_name']
             is_active = data['is_active']
+            if is_active == 0:
+                Modules().write_module(module_id, 0, 0, 0)
             SqLite().update_state(module_id, module_name, is_active)
             return {'data': {'success': True, "message": "Modül Bilgileri Güncellendi"}}
 
